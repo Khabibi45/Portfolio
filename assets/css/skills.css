@@ -1,12 +1,13 @@
 /* --- SKILLS CLOUD SECTION CSS (UPDATED FOCUS MODE) --- */
 
-#skills-section {
+#skills-section,
+#skills {
     position: relative;
     padding: 6rem 1rem;
     overflow: hidden;
-    background: #05070f;
+    background: transparent;
+    /* Managed by index.php class */
     min-height: 800px;
-    /* Ensure space for focus mode */
 }
 
 /* Background Canvas */

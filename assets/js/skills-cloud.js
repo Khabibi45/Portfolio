@@ -12,24 +12,17 @@ class SkillsCloud {
         this.width = 0;
         this.height = 0;
         this.targetShape = 'default';
+        this.morphId = 0; // NEW: Lock for async morphs
         this.isMobile = window.innerWidth < 768;
-        this.maxPoints = this.isMobile ? 120 : 300;
+        this.maxPoints = this.isMobile ? 800 : 3000; // Increased density significantly
         this.animationId = null;
         this.isVisible = true;
 
-        this.colors = { point: '#6366f1', line: 'rgba(99, 102, 241, 0.1)' };
+        this.colors = { point: '#6366f1', line: 'rgba(99, 102, 241, 0.1)' }; // Dimmed lines for density
 
         // --- SHAPE GENERATORS ---
         this.shapes = {
-            'default': this.genBlob(),
-            'js': this.genJS(),
-            'php': this.genPHP(),
-            'css': this.genCSS(),
-            'html': this.genHTML(),
-            'mysql': this.genMySQL(),
-            'git': this.genGit(),
-            'docker': this.genDocker(),
-            'linux': this.genLinux()
+            'default': this.genBlob()
         };
 
         this.init();
@@ -40,9 +33,27 @@ class SkillsCloud {
         window.addEventListener('resize', () => {
             this.resize();
             this.isMobile = window.innerWidth < 768;
-            this.maxPoints = this.isMobile ? 120 : 300;
+            this.maxPoints = this.isMobile ? 800 : 3000;
             this.repopulatePoints();
         });
+
+        // Pre-map icons to keys
+        this.iconMap = {
+            'js': 'fab fa-js',
+            'php': 'fab fa-php',
+            'css': 'fab fa-css3-alt',
+            'html': 'fab fa-html5',
+            'mysql': 'fas fa-database',
+            'git': 'fab fa-git-alt',
+            'docker': 'fab fa-docker',
+            'linux': 'fab fa-linux',
+            'tailwind': 'fab fa-css3', // Fallback
+            'sql': 'fas fa-database',
+            'java': 'fab fa-java',
+            'automation': 'fas fa-robot',
+            'python': 'fab fa-python',
+            'ai': 'fas fa-brain'
+        };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -50,10 +61,11 @@ class SkillsCloud {
                 else { this.isVisible = false; this.stop(); }
             });
         });
-        observer.observe(document.getElementById('skills-section'));
+        const section = document.getElementById('skills-section') || document.getElementById('skills') || document.body;
+        observer.observe(section);
 
-        document.addEventListener('skill:preview', (e) => this.morph(e.detail.key));
-        document.addEventListener('skill:select', (e) => this.morph(e.detail.key));
+        document.addEventListener('skill:preview', (e) => this.morph(e.detail.key, e.detail.label));
+        document.addEventListener('skill:select', (e) => this.morph(e.detail.key, e.detail.label));
         document.addEventListener('skill:clear', () => this.morph('default'));
 
         this.repopulatePoints();
@@ -78,51 +90,51 @@ class SkillsCloud {
         this.morph(this.targetShape);
     }
 
-    morph(shapeKey) {
-        this.targetShape = shapeKey;
-        const shape = this.shapes[shapeKey] || this.shapes['default'];
-
-        // center mapping
-        const margin = this.isMobile ? 50 : 150;
-        const size = Math.min(this.width, this.height) - (margin * 2);
-        const offsetX = (this.width - size) / 2;
-        const offsetY = (this.height - size) / 2;
-
-        this.points.forEach((p, i) => {
-            const shapePt = shape[i % shape.length];
-            p.tx = offsetX + (shapePt.x * size);
-            p.ty = offsetY + (shapePt.y * size);
-
-            // Jitter for 'cloud' effect
-            p.tx += (Math.random() - 0.5) * 15;
-            p.ty += (Math.random() - 0.5) * 15;
-        });
-    }
+    // Unified async morph method below
 
     render() {
         if (!this.isVisible) return;
         this.ctx.clearRect(0, 0, this.width, this.height);
-        this.ctx.fillStyle = this.colors.point;
+
+        const isPreset = this.targetShape !== 'default';
+
+        // --- ADAPTIVE RENDERING (Blob vs Preset) ---
+        const dotSize = isPreset ? 0.9 : (this.isMobile ? 0.8 : 1.2);
+        const glowAmount = isPreset ? 8 : (this.isMobile ? 10 : 15);
+        const pointColor = isPreset ? 'rgba(129, 140, 248, 0.95)' : this.colors.point; // Using Odyssey purple for presets
+
+        this.ctx.beginPath();
+        this.ctx.fillStyle = pointColor;
+        this.ctx.shadowBlur = glowAmount;
+        this.ctx.shadowColor = pointColor;
 
         this.points.forEach(p => {
-            p.x += (p.tx - p.x) * 0.05;
-            p.y += (p.ty - p.y) * 0.05;
-            this.ctx.beginPath();
-            this.ctx.arc(p.x, p.y, this.isMobile ? 1 : 1.5, 0, Math.PI * 2);
-            this.ctx.fill();
-        });
+            // Smooth morphing
+            p.x += (p.tx - p.x) * 0.08;
+            p.y += (p.ty - p.y) * 0.08;
 
-        // Lines
-        if (!this.isMobile && this.points.length < 250) {
-            this.ctx.strokeStyle = this.colors.line;
+            // DRAW POINTS
+            this.ctx.moveTo(p.x + dotSize, p.y);
+            this.ctx.arc(p.x, p.y, dotSize, 0, Math.PI * 2);
+        });
+        this.ctx.fill();
+        this.ctx.shadowBlur = 0;
+
+        // --- PRESET-ONLY: DATA STREAM CONNECTIONS (Liaisons) ---
+        if (isPreset && !this.isMobile) {
+            this.ctx.strokeStyle = 'rgba(129, 140, 248, 0.15)';
+            this.ctx.lineWidth = 0.5;
             this.ctx.beginPath();
-            for (let i = 0; i < this.points.length; i++) {
-                // Optimization: check fewer neighbors
-                for (let j = i + 1; j < Math.min(i + 5, this.points.length); j++) {
+            // sample fewer points for lines to keep performance high
+            for (let i = 0; i < this.points.length; i += 6) {
+                for (let j = i + 1; j < Math.min(i + 4, this.points.length); j++) {
                     const p1 = this.points[i];
                     const p2 = this.points[j];
                     const d = (p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2;
-                    if (d < 2500) { this.ctx.moveTo(p1.x, p1.y); this.ctx.lineTo(p2.x, p2.y); }
+                    if (d < 1200) { // Tight threshold for sharp "fil" look
+                        this.ctx.moveTo(p1.x, p1.y);
+                        this.ctx.lineTo(p2.x, p2.y);
+                    }
                 }
             }
             this.ctx.stroke();
@@ -134,154 +146,197 @@ class SkillsCloud {
     start() { if (!this.animationId) this.render(); }
     stop() { if (this.animationId) { cancelAnimationFrame(this.animationId); this.animationId = null; } }
 
-    // --- GENERIC UTILS ---
-    addPath(pts, x1, y1, x2, y2, steps) {
-        for (let i = 0; i <= steps; i++) {
-            pts.push({ x: x1 + (x2 - x1) * (i / steps), y: y1 + (y2 - y1) * (i / steps) });
+    // --- PIXEL PERFECT SAMPLING ---
+
+    async sampleIcon(iconClass) {
+        // Cache check
+        if (this.shapes[iconClass]) return this.shapes[iconClass];
+
+        const size = 250; // Increased sample resolution
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = size;
+        tempCanvas.height = size;
+        const tempCtx = tempCanvas.getContext('2d', { willReadFrequently: true });
+
+        // Identify Font Family and Unicode from class
+        const isBrand = iconClass.includes('fab');
+        const fontFamily = isBrand ? '"Font Awesome 6 Brands"' : '"Font Awesome 6 Free"';
+        const fontWeight = isBrand ? '400' : '900';
+
+        // Wait for fonts to ensure render
+        await document.fonts.ready;
+
+        // Create a temporary element to get the character code
+        const tempI = document.createElement('i');
+        tempI.className = iconClass;
+        tempI.style.display = 'none';
+        document.body.appendChild(tempI);
+        const content = window.getComputedStyle(tempI, ':before').content;
+        const charCode = content.replace(/['"]/g, '');
+        document.body.removeChild(tempI);
+
+        // Render to offscreen
+        tempCtx.clearRect(0, 0, size, size);
+        tempCtx.fillStyle = 'white';
+        tempCtx.font = `${fontWeight} ${size * 0.85}px ${fontFamily}`;
+        tempCtx.textAlign = 'center';
+        tempCtx.textBaseline = 'middle';
+        tempCtx.fillText(charCode, size / 2, size / 2);
+
+        // Extract points
+        const imgData = tempCtx.getImageData(0, 0, size, size).data;
+        const validCoords = [];
+
+        for (let y = 0; y < size; y++) {
+            for (let x = 0; x < size; x++) {
+                const alpha = imgData[(y * size + x) * 4 + 3];
+                if (alpha > 50) { // Lower threshold for "softer" edges/more points
+                    validCoords.push({ x: x / size, y: y / size });
+                }
+            }
         }
+
+        if (validCoords.length === 0) return this.genBlob();
+
+        this.shapes[iconClass] = validCoords;
+        return validCoords;
+    }
+
+    // NEW: High Quality Text Sampling (with Auto-Scaling for long labels)
+    async sampleText(text) {
+        const size = 500; // Increased width to accommodate longer labels
+        const height = 120;
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = size;
+        tempCanvas.height = height;
+        const tempCtx = tempCanvas.getContext('2d', { willReadFrequently: true });
+
+        // Dynamic Font Scaling
+        let fontSize = 48;
+        tempCtx.font = `900 ${fontSize}px "Inter", sans-serif`;
+        const metrics = tempCtx.measureText(text);
+        if (metrics.width > size * 0.9) {
+            fontSize = Math.floor(fontSize * (size * 0.9 / metrics.width));
+            tempCtx.font = `900 ${fontSize}px "Inter", sans-serif`;
+        }
+
+        tempCtx.fillStyle = 'white';
+        tempCtx.textAlign = 'center';
+        tempCtx.textBaseline = 'middle';
+        tempCtx.fillText(text, size / 2, height / 2);
+
+        const imgData = tempCtx.getImageData(0, 0, size, height).data;
+        const coords = [];
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < size; x++) {
+                if (imgData[(y * size + x) * 4 + 3] > 128) {
+                    coords.push({ x: x / size, y: y / height });
+                }
+            }
+        }
+        return coords;
+    }
+
+    // Combined Preset Logic (Refined Layout & Density)
+    async getCombinedPreset(key, label) {
+        const cacheKey = `${key}_${label}`;
+        if (this.shapes[cacheKey]) return this.shapes[cacheKey];
+
+        const iconClass = this.iconMap[key];
+        let iconRaw = iconClass ? await this.sampleIcon(iconClass) : this.genBlob();
+        let textRaw = label ? await this.sampleText(label) : [];
+
+        const finalPts = [];
+        // Lower density for text as requested (e.g., 12% for text, 88% for logo)
+        const nLogo = Math.floor(this.maxPoints * 0.88);
+        const nText = this.maxPoints - nLogo;
+
+        // --- Layout Parameters (Enlarged Text, Minimal Gap) ---
+        const logoScale = 0.55;
+        const textScale = 0.38; // Significantly larger text
+        const gap = 0.01;      // Minimal space
+
+        const groupHeight = logoScale + gap + textScale;
+        const startY = (1.05 - groupHeight) / 2;
+
+        // 1. Logo Block (Preserve Square)
+        for (let i = 0; i < nLogo; i++) {
+            const idx = Math.floor((i / nLogo) * iconRaw.length);
+            const p = iconRaw[idx];
+            finalPts.push({
+                x: 0.5 - (logoScale / 2) + (p.x * logoScale), // Centered horizontally
+                y: startY + (p.y * logoScale)
+            });
+        }
+
+        // 2. Text Block (Preserve Aspect Ratio ~4.16)
+        if (textRaw.length > 0) {
+            const textY = startY + logoScale + gap;
+            // Cap width to 0.95 to avoid clipping
+            const textWidth = Math.min(0.95, textScale * (500 / 120)); // Use actual aspect ratio
+            const textX = (1.0 - textWidth) / 2;
+
+            for (let i = 0; i < nText; i++) {
+                const idx = Math.floor((i / nText) * textRaw.length);
+                const p = textRaw[idx];
+                finalPts.push({
+                    x: textX + (p.x * textWidth),
+                    y: textY + (p.y * textScale)
+                });
+            }
+        } else {
+            for (let i = 0; i < nText; i++) {
+                finalPts.push({ x: 0.5 + (Math.random() - 0.5) * 0.5, y: 0.85 + (Math.random() - 0.5) * 0.05 });
+            }
+        }
+
+        this.shapes[cacheKey] = finalPts;
+        return finalPts;
     }
 
     // --- GENERATORS ---
 
     genBlob() {
         const pts = [];
-        for (let i = 0; i < 300; i++) {
+        for (let i = 0; i < this.maxPoints; i++) {
             const a = Math.random() * Math.PI * 2;
-            const r = Math.sqrt(Math.random()) * 0.5;
+            const r = Math.sqrt(Math.random()) * 0.55;
             pts.push({ x: 0.5 + Math.cos(a) * r, y: 0.5 + Math.sin(a) * r });
         }
         return pts;
     }
 
-    genJS() { // Square + JS
-        const pts = [];
-        // Border Square
-        this.addPath(pts, 0.2, 0.2, 0.8, 0.2, 30);
-        this.addPath(pts, 0.8, 0.2, 0.8, 0.8, 30);
-        this.addPath(pts, 0.8, 0.8, 0.2, 0.8, 30);
-        this.addPath(pts, 0.2, 0.8, 0.2, 0.2, 30);
-        // J
-        this.addPath(pts, 0.35, 0.35, 0.35, 0.6, 15);
-        this.addPath(pts, 0.35, 0.6, 0.25, 0.65, 10);
-        // S
-        const sPts = 30;
-        for (let i = 0; i < sPts; i++) {
-            const t = i / sPts;
-            pts.push({ x: 0.55 + Math.sin(t * Math.PI * 2) * 0.1 + t * 0.1, y: 0.4 + t * 0.3 });
+    async morph(shapeKey, label = null) {
+        if (this.targetShape === shapeKey && !label) return;
+        this.targetShape = shapeKey;
+
+        const activeMorph = ++this.morphId; // Capture ID at start
+
+        let shape;
+        if (shapeKey === 'default') {
+            shape = this.shapes['default'];
+        } else {
+            shape = await this.getCombinedPreset(shapeKey, label);
         }
-        return pts;
-    }
 
-    genPHP() { // Oval + php
-        const pts = [];
-        // Oval
-        for (let i = 0; i < 80; i++) {
-            const a = (i / 80) * Math.PI * 2;
-            pts.push({ x: 0.5 + Math.cos(a) * 0.4, y: 0.5 + Math.sin(a) * 0.25 });
-        }
-        // php (simplified lines)
-        this.addPath(pts, 0.25, 0.45, 0.25, 0.65, 10); // p
-        this.addPath(pts, 0.25, 0.45, 0.35, 0.45, 5);
-        this.addPath(pts, 0.35, 0.45, 0.35, 0.55, 5);
-        this.addPath(pts, 0.35, 0.55, 0.25, 0.55, 5);
+        // --- CANCEL IF NEW MORPH STARTED ---
+        if (activeMorph !== this.morphId) return;
 
-        this.addPath(pts, 0.45, 0.4, 0.45, 0.6, 10); // h
-        this.addPath(pts, 0.45, 0.5, 0.55, 0.5, 5);
-        this.addPath(pts, 0.55, 0.5, 0.55, 0.6, 5);
+        const margin = this.isMobile ? 40 : 120;
+        const size = Math.min(this.width, this.height) - (margin * 2);
+        const offsetX = (this.width - size) / 2;
+        const offsetY = (this.height - size) / 2;
 
-        this.addPath(pts, 0.65, 0.45, 0.65, 0.65, 10); // p
-        this.addPath(pts, 0.65, 0.45, 0.75, 0.45, 5);
-        this.addPath(pts, 0.75, 0.45, 0.75, 0.55, 5);
-        this.addPath(pts, 0.75, 0.55, 0.65, 0.55, 5);
-        return pts;
-    }
-
-    genCSS() { // Shield
-        const pts = [];
-        // Shield outline
-        this.addPath(pts, 0.2, 0.1, 0.8, 0.1, 20); // Top
-        this.addPath(pts, 0.8, 0.1, 0.7, 0.75, 20); // Right side
-        this.addPath(pts, 0.7, 0.75, 0.5, 0.9, 10); // Bottom right
-        this.addPath(pts, 0.5, 0.9, 0.3, 0.75, 10); // Bottom left
-        this.addPath(pts, 0.3, 0.75, 0.2, 0.1, 20); // Left side
-        // Inner simplified shape
-        this.addPath(pts, 0.5, 0.2, 0.5, 0.8, 15);
-        this.addPath(pts, 0.5, 0.2, 0.7, 0.2, 10);
-        return pts;
-    }
-
-    genHTML() { // Shield + <>
-        const pts = this.genCSS(); // Base shield
-        // <
-        this.addPath(pts, 0.4, 0.4, 0.3, 0.5, 5);
-        this.addPath(pts, 0.3, 0.5, 0.4, 0.6, 5);
-        // >
-        this.addPath(pts, 0.6, 0.4, 0.7, 0.5, 5);
-        this.addPath(pts, 0.7, 0.5, 0.6, 0.6, 5);
-        return pts;
-    }
-
-    genMySQL() { // Cylinder
-        const pts = [];
-        // Top ellipse
-        for (let i = 0; i < 40; i++) {
-            const a = (i / 40) * Math.PI * 2;
-            pts.push({ x: 0.5 + Math.cos(a) * 0.3, y: 0.3 + Math.sin(a) * 0.1 });
-        }
-        // Bottom ellipse (half)
-        for (let i = 0; i <= 20; i++) {
-            const a = (i / 40) * Math.PI * 2; // only draw bottom half? no draw full for base
-            pts.push({ x: 0.5 + Math.cos(a) * 0.3, y: 0.7 + Math.sin(a) * 0.1 });
-        }
-        // Sides
-        this.addPath(pts, 0.2, 0.3, 0.2, 0.7, 20);
-        this.addPath(pts, 0.8, 0.3, 0.8, 0.7, 20);
-        return pts;
-    }
-
-    genGit() { // Branch
-        const pts = [];
-        // Main line
-        this.addPath(pts, 0.3, 0.8, 0.3, 0.2, 30);
-        this.addPath(pts, 0.3, 0.5, 0.6, 0.2, 20); // Branch
-        // Dots
-        for (let i = 0; i < 10; i++) pts.push({ x: 0.3, y: 0.2 });
-        for (let i = 0; i < 10; i++) pts.push({ x: 0.3, y: 0.5 });
-        for (let i = 0; i < 10; i++) pts.push({ x: 0.6, y: 0.2 });
-        return pts;
-    }
-
-    genDocker() { // Whale
-        const pts = [];
-        // Body (Curve)
-        for (let i = 0; i < 50; i++) {
-            const t = i / 50;
-            pts.push({ x: 0.1 + t * 0.7, y: 0.6 + Math.sin(t * Math.PI) * 0.2 });
-        }
-        // Containers (Boxes)
-        this.addPath(pts, 0.3, 0.5, 0.4, 0.5, 5);
-        this.addPath(pts, 0.3, 0.4, 0.4, 0.4, 5);
-        this.addPath(pts, 0.45, 0.5, 0.55, 0.5, 5);
-        this.addPath(pts, 0.45, 0.4, 0.55, 0.4, 5);
-        return pts;
-    }
-
-    genLinux() { // Penguin
-        const pts = [];
-        // Body (Oval)
-        for (let i = 0; i < 60; i++) {
-            const a = (i / 60) * Math.PI * 2;
-            pts.push({ x: 0.5 + Math.cos(a) * 0.25, y: 0.55 + Math.sin(a) * 0.35 });
-        }
-        // Belly
-        for (let i = 0; i < 40; i++) {
-            const a = (i / 40) * Math.PI * 2;
-            pts.push({ x: 0.5 + Math.cos(a) * 0.15, y: 0.6 + Math.sin(a) * 0.2 });
-        }
-        // Eyes
-        for (let i = 0; i < 5; i++) pts.push({ x: 0.45, y: 0.35 });
-        for (let i = 0; i < 5; i++) pts.push({ x: 0.55, y: 0.35 });
-        return pts;
+        // Use the LATEST points array reference
+        const currentPoints = this.points;
+        currentPoints.forEach((p, i) => {
+            const shapePt = shape[i % shape.length];
+            p.tx = offsetX + (shapePt.x * size);
+            p.ty = offsetY + (shapePt.y * size);
+            // Subtle vibration (organic jitter)
+            p.tx += (Math.random() - 0.5) * 4;
+            p.ty += (Math.random() - 0.5) * 4;
+        });
     }
 }
 

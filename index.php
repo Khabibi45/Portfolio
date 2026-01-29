@@ -29,6 +29,11 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/skills.css">
+    <link rel="stylesheet" href="assets/css/projects-lab.css">
+    <link rel="stylesheet" href="assets/css/collection.css">
+    <link rel="stylesheet" href="assets/css/about-lab.css">
+    <link rel="stylesheet" href="assets/css/about-journey.css">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -116,7 +121,9 @@
                     class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-gray-800">Compétences</a>
                 <a href="#projects"
                     class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-gray-800">Projets</a>
-                <a href="forms.php" class="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:bg-gray-800"><i class="fas fa-flask mr-1"></i> Labo / Forms</a>
+                <a href="forms.php"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:bg-gray-800"><i
+                        class="fas fa-flask mr-1"></i> Labo / Forms</a>
                 <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-primary font-bold">Me
                     Contacter</a>
             </div>
@@ -193,78 +200,117 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 relative bg-slate-900/50">
+    <!-- About Section: Cinematic Odyssey -->
+    <section id="about" class="py-20 relative bg-slate-900/50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16"><span
-                    class="border-b-4 border-primary/50 pb-2">A Propos</span></h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <h3 class="text-2xl font-bold">Passionné par le Développement et l'Automatisation</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        Etudiant en 3ème année de BUT Informatique (Parcours "Déploiement d'Applications Sécurisées") à
-                        l'IUT Paul-Sabatier, je combine ma passion pour le code propre avec la puissance de
-                        l'automatisation.
-                    </p>
-                    <p class="text-gray-400 leading-relaxed">
-                        Que ce soit pour créer un site vitrine "Haluscinant" ou optimiser des flux de travail complexes
-                        avec n8n et Python, je cherche toujours l'excellence et l'efficacité.
-                    </p>
+            <!-- Identity Profile (Scanner) -->
+            <div class="about-module id-scanner mb-32" id="about-01">
+                <div class="scanner-card mx-auto">
+                    <div class="scanner-line"></div>
+                    <div class="card-content">
+                        <h2 class="text-5xl font-black mb-2 scanner-reveal"
+                            style="opacity:0; transform: translateY(20px);">CAMIL BELMEHDI</h2>
+                        <p class="text-indigo-400 font-bold mb-6 scanner-reveal"
+                            style="opacity:0; transform: translateY(20px);">DÉVELOPPEUR & AUTOMATISATION</p>
 
-                    <div class="grid grid-cols-2 gap-4 pt-4">
-                        <div
-                            class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-primary/30 transition-colors">
-                            <i class="fas fa-graduation-cap text-2xl text-primary mb-2"></i>
-                            <h4 class="font-bold">Formation</h4>
-                            <p class="text-sm text-gray-400">BUT Informatique (Toulouse)</p>
+                        <div class="space-y-4 text-gray-300">
+                            <p class="scanner-reveal" style="opacity:0; transform: translateY(20px);">Passionné par le
+                                Développement et l’Automatisation</p>
+                            <p class="scanner-reveal" style="opacity:0; transform: translateY(20px);">BUT Informatique
+                                (Sécurisation d’Applications) — IUT Paul Sabatier</p>
                         </div>
-                        <div
-                            class="p-4 rounded-xl bg-white/5 border border-white/5 hover:border-primary/30 transition-colors">
-                            <i class="fas fa-language text-2xl text-secondary mb-2"></i>
-                            <h4 class="font-bold">Langues</h4>
-                            <p class="text-sm text-gray-400">Français (Natif)<br>Anglais (C1)</p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="relative">
-                    <!-- Timeline-ish Visual -->
-                    <div
-                        class="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-indigo-500 to-transparent opacity-30">
-                    </div>
-                    <div class="space-y-8 pl-16">
-                        <div class="relative group">
-                            <div
-                                class="absolute -left-[2.85rem] top-1 w-6 h-6 rounded-full bg-slate-900 border-2 border-primary group-hover:scale-125 transition-transform">
-                            </div>
-                            <h4 class="text-xl font-bold text-white group-hover:text-primary transition-colors">2025 -
-                                Aujourd'hui</h4>
-                            <p class="text-gray-400">BUT III Informatique - Parcours Sécurité</p>
-                            <p class="text-sm text-gray-500 mt-1">Recherche de stage active</p>
-                        </div>
-                        <div class="relative group">
-                            <div
-                                class="absolute -left-[2.85rem] top-1 w-6 h-6 rounded-full bg-slate-900 border-2 border-gray-600 group-hover:border-primary transition-colors">
-                            </div>
-                            <h4 class="text-xl font-bold text-white">Stage - Adonis Education</h4>
-                            <p class="text-gray-400">Automatisation, Maintenance & API</p>
-                        </div>
-                        <div class="relative group">
-                            <div
-                                class="absolute -left-[2.85rem] top-1 w-6 h-6 rounded-full bg-slate-900 border-2 border-gray-600 group-hover:border-primary transition-colors">
-                            </div>
-                            <h4 class="text-xl font-bold text-white">Bac STI2D</h4>
-                            <p class="text-gray-400">Option Systèmes d'Information et Numérique</p>
+                        <div class="flex gap-4 mt-8">
+                            <span class="scanner-reveal badge" style="opacity:0; transform: translateY(20px);">FR
+                                NATIF</span>
+                            <span class="scanner-reveal badge" style="opacity:0; transform: translateY(20px);">EN
+                                C1</span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Vertical Journey: The Path of Innovation -->
+            <div class="about-journey-container" id="innovation-path">
+                <h2 class="text-6xl font-black text-center mb-20 tracking-tighter">THE PATH OF INNOVATION</h2>
+
+                <div class="journey-data-line">
+                    <div class="journey-data-progress" id="journey-progress"></div>
+                </div>
+
+                <!-- Milestone 1: Awakening -->
+                <div class="journey-pod left" data-pod="1">
+                    <div class="pod-node"></div>
+                    <div class="pod-card">
+                        <span class="pod-year">2018 - 2021</span>
+                        <h3 class="pod-title">BAC STI2D SIN</h3>
+                        <p class="pod-desc">L'entrée dans le monde du numérique. Spécialisation SIN (Systèmes
+                            d'Information et Numérique) et découverte des premiers langages de programmation.</p>
+                    </div>
+                    <div class="pod-info">
+                        <span class="info-label">FIRST COMMIT</span>
+                        <span class="info-metric">HELLO WORLD</span>
+                    </div>
+                </div>
+
+                <!-- Milestone 2: Foundation -->
+                <div class="journey-pod right" data-pod="2">
+                    <div class="pod-node"></div>
+                    <div class="pod-card">
+                        <span class="pod-year">2021 - 2024</span>
+                        <h3 class="pod-title">BUT INFORMATIQUE</h3>
+                        <p class="pod-desc">IUT Paul-Sabatier. Approfondissement de l'architecture logicielle, des
+                            réseaux et de la sécurité. Focus sur le déploiement et la sécurisation d'applications.</p>
+                    </div>
+                    <div class="pod-info">
+                        <span class="info-label">ALGORITHMS</span>
+                        <span class="info-metric">O(log n)</span>
+                    </div>
+                </div>
+
+                <!-- Milestone 3: Real World -->
+                <div class="journey-pod left" data-pod="3">
+                    <div class="pod-node"></div>
+                    <div class="pod-card">
+                        <span class="pod-year">2023 (STAGE)</span>
+                        <h3 class="pod-title">ADONIS EDUCATION</h3>
+                        <p class="pod-desc">Immersion professionnelle. Maintenance d'API complexes, automatisation de
+                            workflows critiques et gestion d'écosystèmes scalables.</p>
+                    </div>
+                    <div class="pod-info">
+                        <span class="info-label">AUTOMATION</span>
+                        <span class="info-metric">95% FLOWS</span>
+                    </div>
+                </div>
+
+                <!-- Milestone 4: Present -->
+                <div class="journey-pod right" data-pod="4">
+                    <div class="pod-node"></div>
+                    <div class="pod-card">
+                        <span class="pod-year">2025 & BEYOND</span>
+                        <h3 class="pod-title">ELITE AUTOMATION</h3>
+                        <p class="pod-desc">Développement d'agents intelligents et de systèmes autonomes. Toujours à la
+                            recherche du prochain défi d'ingénierie.</p>
+                    </div>
+                    <div class="pod-info">
+                        <span class="info-label">CURRENT STATUS</span>
+                        <span class="info-metric">ACTIVE SEARCH</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-dark relative overflow-hidden">
+    <section id="skills" class="py-20 relative bg-slate-900/50 overflow-hidden">
+        <!-- Vertical Data Bridge -->
+        <div class="journey-data-line skills-bridge">
+            <div class="journey-data-progress" id="bridge-progress"></div>
+        </div>
+
+        <canvas id="skills-canvas"></canvas>
         <!-- Background Decor -->
         <div class="absolute right-0 top-1/4 w-1/3 h-1/2 bg-indigo-900/10 blur-[100px] pointer-events-none"></div>
 
@@ -275,7 +321,8 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Frontend -->
-                <div class="bg-white/5 rounded-2xl p-6 border border-white/5 hover:border-white/10 transition-all">
+                <div
+                    class="skill-card bg-white/5 rounded-2xl p-6 border border-white/5 hover:border-white/10 transition-all">
                     <h3 class="text-xl font-bold mb-6 flex items-center gap-2"><i class="fas fa-code text-primary"></i>
                         Développement Web</h3>
                     <div class="flex flex-wrap gap-3">
@@ -295,7 +342,8 @@
                 </div>
 
                 <!-- Backend & Data -->
-                <div class="bg-white/5 rounded-2xl p-6 border border-white/5 hover:border-white/10 transition-all">
+                <div
+                    class="skill-card bg-white/5 rounded-2xl p-6 border border-white/5 hover:border-white/10 transition-all">
                     <h3 class="text-xl font-bold mb-6 flex items-center gap-2"><i
                             class="fas fa-database text-secondary"></i> Backend & Data</h3>
                     <div class="flex flex-wrap gap-3">
@@ -312,7 +360,8 @@
                 </div>
 
                 <!-- Automation & Tools -->
-                <div class="bg-white/5 rounded-2xl p-6 border border-white/5 hover:border-white/10 transition-all">
+                <div
+                    class="skill-card bg-white/5 rounded-2xl p-6 border border-white/5 hover:border-white/10 transition-all">
                     <h3 class="text-xl font-bold mb-6 flex items-center gap-2"><i
                             class="fas fa-robot text-pink-500"></i> Automation & IA</h3>
                     <div class="flex flex-wrap gap-3">
@@ -336,125 +385,37 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl md:text-5xl font-bold text-center mb-16">Mes Projets</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+            <!-- UNIFIED COLLECTION SECTION -->
+            <div id="collection-hub" class="relative group">
+                <div class="collection-hub-inner is-stacked" id="collection-main">
 
-                <!-- Project 1 -->
-                <div class="project-card group relative h-96 rounded-2xl overflow-hidden cursor-pointer"
-                    data-skills="html js php tailwind">
-                    <!-- Background Image -->
-                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                        style="background-image: url('pics_Montagne.png');"></div>
-                    <div class="absolute inset-0 bg-dark/70 group-hover:bg-dark/50 transition-colors duration-300">
+                    <!-- Left: Card Stack -->
+                    <div class="collection-stack-container" id="stack-target">
+                        <!-- Injected by collection.ui.js -->
                     </div>
 
-                    <!-- Content -->
-                    <div class="absolute inset-0 p-6 flex flex-col justify-end">
-                        <div
-                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <div class="flex gap-2 mb-3">
-                                <span
-                                    class="text-xs px-2 py-1 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">PHP</span>
-                                <span
-                                    class="text-xs px-2 py-1 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">JS</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Web Builder (Delfoin)</h3>
-                            <p
-                                class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 mb-4">
-                                CMS et builder de site web personnalisé avec gestion drag & drop.
-                            </p>
-                            <a href="https://delfoin-multiservices.onrender.com" target="_blank"
-                                class="inline-flex items-center text-primary font-bold hover:text-white transition-colors">
-                                Voir le site <i class="fas fa-external-link-alt ml-2"></i>
-                            </a>
+                    <!-- Right: Info (Will fade out on explore) -->
+                    <div class="collection-info flex-1 transition-all duration-700">
+                        <div class="max-w-md">
+                            <h3 class="text-xs font-bold text-indigo-400 tracking-widest uppercase mb-2">Portfolio</h3>
+                            <h3 class="text-5xl font-black text-white mb-4">WORKS</h3>
+                            <p class="text-indigo-200/80 mb-8 text-lg">Découvrez mes réalisations via cette interface
+                                immersive.</p>
+
+                            <button class="collection-trigger module-btn !py-3 !px-8">
+                                Explorer <i class="fas fa-layer-group ml-1"></i>
+                            </button>
                         </div>
                     </div>
+
                 </div>
 
-                <!-- Project 2 -->
-                <div class="project-card group relative h-96 rounded-2xl overflow-hidden cursor-pointer"
-                    data-skills="html css js">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-br from-gray-800 to-black transition-transform duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="absolute inset-0 bg-dark/40 group-hover:bg-dark/20 transition-colors duration-300">
-                    </div>
-
-                    <div class="absolute inset-0 p-6 flex flex-col justify-end">
-                        <div
-                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <div class="flex gap-2 mb-3">
-                                <span
-                                    class="text-xs px-2 py-1 rounded bg-orange-500/20 text-orange-300 border border-orange-500/30">HTML</span>
-                                <span
-                                    class="text-xs px-2 py-1 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">CSS</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Fluidanse</h3>
-                            <p
-                                class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 mb-4">
-                                Site vitrine pour une association de danse, responsive et moderne.
-                            </p>
-                            <a href="https://fluidanse.org" target="_blank"
-                                class="inline-flex items-center text-primary font-bold hover:text-white transition-colors">
-                                Voir le site <i class="fas fa-external-link-alt ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card group relative h-96 rounded-2xl overflow-hidden cursor-pointer"
-                    data-skills="python automation ai">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-br from-green-900 to-slate-900 transition-transform duration-500 group-hover:scale-110">
-                    </div>
-
-                    <div class="absolute inset-0 p-6 flex flex-col justify-end">
-                        <div
-                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <div class="flex gap-2 mb-3">
-                                <span
-                                    class="text-xs px-2 py-1 rounded bg-green-500/20 text-green-300 border border-green-500/30">Python</span>
-                                <span
-                                    class="text-xs px-2 py-1 rounded bg-yellow-500/20 text-yellow-300 border border-yellow-500/30">Automation</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Stage Hunter Bot</h3>
-                            <p
-                                class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 mb-4">
-                                Script Python pour automatiser l'envoi de candidatures et le scraping d'offres.
-                            </p>
-                            <span class="text-gray-500 text-xs italic">Projet Interne</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4 (Extra for grid balance) -->
-                <div class="project-card group relative h-96 rounded-2xl overflow-hidden cursor-pointer"
-                    data-skills="automation ai python">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-br from-purple-900 to-slate-900 transition-transform duration-500 group-hover:scale-110">
-                    </div>
-
-                    <div class="absolute inset-0 p-6 flex flex-col justify-end">
-                        <div
-                            class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                            <div class="flex gap-2 mb-3">
-                                <span
-                                    class="text-xs px-2 py-1 rounded bg-pink-500/20 text-pink-300 border border-pink-500/30">n8n</span>
-                                <span
-                                    class="text-xs px-2 py-1 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">Instagram</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">InstaAuto Post</h3>
-                            <p
-                                class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 mb-4">
-                                Workflow n8n pour la création et la publication automatique de posts Instagram.
-                            </p>
-                            <span class="text-gray-500 text-xs italic">Projet Interne</span>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- Unified Grid Target (Hidden by default, used for FLIP) -->
+                <div class="collection-grid mt-10" id="collection-grid-final"></div>
             </div>
         </div>
+    </section>
+    </div>
     </section>
 
     <!-- Contact Section -->
@@ -530,9 +491,19 @@
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/skills-cloud.js"></script>
+    <script src="assets/js/skills-cards.js"></script>
+    <script src="assets/js/projects-lab.js"></script>
+    <script src="assets/js/about-lab.js"></script>
+
+    <!-- Collection Module -->
+    <script type="module" src="assets/js/collection.data.js"></script>
+    <script type="module" src="assets/js/collection.ui.js"></script>
+    <script src="assets/js/collection.animations.js"></script>
 </body>
 
 </html>

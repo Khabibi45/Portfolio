@@ -1,0 +1,95 @@
+/* --- TRANSITIONS LAB STYLES --- */
+
+.sim-section {
+    transition: none;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+#simulation-viewport {
+    background: #0d111c;
+    perspective: 1200px;
+}
+
+/* 1. Curtain Transition */
+.transition-curtain {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, #000, #1a1a1a);
+    z-index: 100;
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+
+.transition-curtain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+/* 2. Film Grain Overlay */
+.film-grain-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0;
+    z-index: 50;
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+}
+
+/* 3. Micro Loader */
+.micro-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 8px;
+    z-index: 60;
+    opacity: 0;
+}
+
+.loader-dot {
+    width: 6px;
+    height: 6px;
+    background: #6366f1;
+    border-radius: full;
+}
+
+/* Dashboard UI Polish */
+#transition-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+}
+
+.sim-title {
+    background: linear-gradient(to bottom, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.05em;
+}
+
+/* Clip Path reveal container */
+#clip-reveal-mask {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 15;
+    clip-path: circle(0% at 50% 50%);
+}
+
+#simulation-viewport.is-loading::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    z-index: 5;
+}

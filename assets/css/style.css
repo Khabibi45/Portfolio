@@ -2,9 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
 
 :root {
-    --primary: #6366f1; /* Indigo 500 */
-    --secondary: #a855f7; /* Purple 500 */
-    --dark: #0f172a; /* Slate 900 */
+    --primary: #6366f1;
+    /* Indigo 500 */
+    --secondary: #a855f7;
+    /* Purple 500 */
+    --dark: #0f172a;
+    /* Slate 900 */
     --light: #f8fafc;
     --glass: rgba(255, 255, 255, 0.05);
 }
@@ -14,20 +17,24 @@ body {
     background-color: var(--dark);
     color: var(--light);
     overflow-x: hidden;
-    cursor: none; /* Custom cursor */
+    cursor: none;
+    /* Custom cursor */
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
 }
+
 ::-webkit-scrollbar-track {
     background: var(--dark);
 }
+
 ::-webkit-scrollbar-thumb {
     background: #334155;
     border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
 }
@@ -43,11 +50,13 @@ body {
     z-index: 9999;
     pointer-events: none;
 }
+
 .cursor-dot {
     width: 8px;
     height: 8px;
     background-color: white;
 }
+
 .cursor-outline {
     width: 40px;
     height: 40px;
@@ -92,6 +101,7 @@ body {
 .skill-tag {
     transition: all 0.3s ease;
 }
+
 .skill-tag.active {
     background: var(--primary);
     color: white;
@@ -104,6 +114,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 }
+
 .form-input:focus {
     background: rgba(255, 255, 255, 0.08);
     border-color: var(--primary);

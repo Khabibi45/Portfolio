@@ -88,36 +88,11 @@ gsap.from(".project-card", {
     stagger: 0.2
 });
 
-// Transitivity Logic (Skills -> Projects)
+// Transitivity Logic (Skills -> Projects) - DISABLED (Controlled by collection.ui.js & skills-cards.js)
+/*
 const skillTags = document.querySelectorAll('.skill-tag');
-const projectCards = document.querySelectorAll('.project-card');
-
-skillTags.forEach(tag => {
-    tag.addEventListener('click', () => {
-        const skill = tag.dataset.skill;
-
-        // Toggle active state
-        if (tag.classList.contains('active')) {
-            // Reset
-            skillTags.forEach(t => t.classList.remove('active'));
-            projectCards.forEach(card => styleCard(card, true));
-        } else {
-            // Activate
-            skillTags.forEach(t => t.classList.remove('active'));
-            tag.classList.add('active');
-
-            // Filter projects
-            projectCards.forEach(card => {
-                const cardSkills = card.dataset.skills.split(' ');
-                if (cardSkills.includes(skill)) {
-                    styleCard(card, true);
-                } else {
-                    styleCard(card, false);
-                }
-            });
-        }
-    });
-});
+...
+*/
 
 function styleCard(card, isVisible) {
     if (isVisible) {

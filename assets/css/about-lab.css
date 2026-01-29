@@ -1,0 +1,210 @@
+/**
+ * About-Me Laboratory Styles (Full Collection)
+ */
+
+/* 1. Identity Scanner */
+.id-scanner {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scanner-card {
+    position: relative;
+    width: 600px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 3rem;
+    overflow: hidden;
+}
+
+.scanner-line {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #818cf8, transparent);
+    box-shadow: 0 0 15px #818cf8;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.scanner-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.scanner-reveal.badge {
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    color: #818cf8;
+}
+
+/* 2. Split Reality */
+.split-reality {
+    height: 450px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 24px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.split-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+.split-side.code {
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.split-side.automation {
+    background: rgba(168, 85, 247, 0.05);
+}
+
+.split-reality .split-side:hover {
+    flex: 2;
+    opacity: 1;
+    filter: blur(0);
+}
+
+.split-reality:hover .split-side:not(:hover) {
+    opacity: 0.3;
+    filter: blur(2px);
+}
+
+.split-divider {
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    bottom: 5%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 5;
+}
+
+/* 3. Timeline Cinematic */
+.timeline-step {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timeline-step.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.step-number {
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(99, 102, 241, 0.1);
+    line-height: 1;
+}
+
+/* 4. Glass Workflows */
+.glass-table {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+}
+
+.glass-shine {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--x) var(--y), rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+}
+
+/* 5. Monogram Morph */
+.monogram-container {
+    filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3));
+}
+
+/* 6. Product Hero */
+.product-hero h2 {
+    background: linear-gradient(180deg, #fff 0%, #444 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 7. Passport */
+.passport-container {
+    max-width: 500px;
+    perspective: 1000px;
+}
+
+.passport-book {
+    background: #334155;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5);
+    border: 4px solid #1e293b;
+    position: relative;
+}
+
+.passport-page {
+    background: #fefce8;
+    border-radius: 4px;
+    padding: 1.5rem;
+    color: #1e293b;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.05);
+}
+
+/* 8. Spotlight Cards */
+.spotlight-card:hover .card-extra {
+    opacity: 1;
+}
+
+/* 9. Command Palette */
+.cmd-palette {
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.8);
+}
+
+/* 10. Story Orb */
+.orb-satellite {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #818cf8;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.orb-satellite:hover {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: #818cf8;
+    transform: scale(1.2);
+}
+
+/* Global Module System */
+.about-module {
+    position: relative;
+    width: 100%;
+}

@@ -1,0 +1,200 @@
+/**
+ * CINEMATIC ODYSSEY - About Me Journey
+ * Immersive vertical storytelling styles
+ */
+
+.about-journey-container {
+    position: relative;
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 0 2rem 5rem 2rem;
+    /* Reduced from 10rem */
+}
+
+/* Vertical Bridge for Skills */
+.journey-data-line.skills-bridge {
+    bottom: unset;
+    height: 120px;
+    top: -20px;
+    opacity: 0.8;
+}
+
+/* Central Data Cable */
+.journey-data-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.journey-data-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    /* Managed by GSAP */
+    background: linear-gradient(to bottom, transparent, #818cf8, #c084fc);
+    box-shadow: 0 0 20px rgba(129, 140, 248, 0.8);
+}
+
+/* Journey Pods (Milestones) */
+.journey-pod {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 200px;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+}
+
+.journey-pod.left {
+    flex-direction: row;
+}
+
+.journey-pod.right {
+    flex-direction: row-reverse;
+}
+
+/* The Point On The Line */
+.pod-node {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    background: #0f172a;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.journey-pod.active .pod-node {
+    border-color: #818cf8;
+    box-shadow: 0 0 15px #818cf8;
+    background: #818cf8;
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* Content Card */
+.pod-card {
+    width: 42%;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.journey-pod.active .pod-card {
+    border-color: rgba(129, 140, 248, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.pod-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #818cf8, transparent);
+    transform: translateX(-100%);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.journey-pod.active .pod-card::before {
+    transform: translateX(100%);
+}
+
+.pod-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: #818cf8;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: block;
+    letter-spacing: 0.2em;
+}
+
+.pod-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.pod-desc {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+/* Decorative Info */
+.pod-info {
+    width: 42%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0.3;
+    transition: opacity 0.8s ease;
+}
+
+.journey-pod.active .pod-info {
+    opacity: 1;
+}
+
+.info-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 1rem;
+}
+
+.info-metric {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .journey-data-line {
+        left: 2rem;
+    }
+
+    .pod-node {
+        left: 2rem;
+    }
+
+    .pod-card,
+    .pod-info {
+        width: calc(100% - 4rem);
+        margin-left: 4rem;
+    }
+
+    .journey-pod {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pod-info {
+        margin-top: 1.5rem;
+        opacity: 1;
+    }
+}

@@ -3,17 +3,17 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    const section = document.getElementById('skills-section');
+    const section = document.getElementById('skills');
     const container = document.querySelector('.skills-container');
     const grid = document.querySelector('.skills-grid');
-    const cards = document.querySelectorAll('.skill-card');
+    const cards = document.querySelectorAll('.skill-card, .skill-tag');
     let activeCard = null;
 
-    // Create Back Button
+    // Create Back Button (Safety check for grid)
     const backBtn = document.createElement('button');
     backBtn.className = 'skill-back-btn';
     backBtn.innerHTML = '<i class="fas fa-arrow-left"></i> Retour aux compétences';
-    grid.appendChild(backBtn);
+    if (grid) grid.appendChild(backBtn);
 
     backBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -23,16 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
     cards.forEach(card => {
         // Hover Interaction
         card.addEventListener('mouseenter', () => {
-            if (activeCard) return; // Ignore hover if a card is locked
+            if (activeCard) return;
 
-            // Dim others
+            // Dim others only if they are cards
             cards.forEach(c => {
-                if (c !== card) c.classList.add('is-dimmed');
+                if (c !== card && c.classList.contains('skill-card')) c.classList.add('is-dimmed');
             });
 
-            // Dispatch preview
             const key = card.getAttribute('data-skill');
-            dispatchSkillEvent('skill:preview', { key });
+            const label = card.textContent.trim();
+            if (key) dispatchSkillEvent('skill:preview', { key, label });
         });
 
         card.addEventListener('mouseleave', () => {
@@ -79,7 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Dispatch select event
         const key = selectedCard.getAttribute('data-skill');
-        dispatchSkillEvent('skill:select', { key });
+        const label = selectedCard.textContent.trim();
+        dispatchSkillEvent('skill:select', { key, label });
     }
 
     function exitFocusMode() {
