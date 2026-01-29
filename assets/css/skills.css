@@ -1,0 +1,228 @@
+/* --- SKILLS CLOUD SECTION CSS (UPDATED FOCUS MODE) --- */
+
+#skills-section {
+    position: relative;
+    padding: 6rem 1rem;
+    overflow: hidden;
+    background: #05070f;
+    min-height: 800px;
+    /* Ensure space for focus mode */
+}
+
+/* Background Canvas */
+#skills-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Content Wrapper */
+.skills-container {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+    transition: all 0.5s ease;
+}
+
+/* Header */
+.skills-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.skills-focus-mode .skills-header {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+.skills-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #b6d3fe, #e8ecff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.skills-subtitle {
+    color: #64748b;
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    position: relative;
+    /* For absolute positioning in focus mode if needed, though we use transforms here */
+}
+
+/* Back Button */
+.skill-back-btn {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    color: #b6d3fe;
+    border: 1px solid rgba(182, 211, 254, 0.3);
+    padding: 0.5rem 1.5rem;
+    border-radius: 99px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+}
+
+.skill-back-btn:hover {
+    background: rgba(182, 211, 254, 0.2);
+}
+
+.skills-focus-mode .skill-back-btn {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Card */
+.skill-card {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Effects (Only when not in focus mode) */
+body:not(.focus-active) .skill-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(182, 211, 254, 0.3);
+    background: rgba(30, 41, 59, 0.6);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Siblings Dimming */
+.skill-card.is-dimmed {
+    opacity: 0.3;
+    filter: blur(2px) grayscale(50%);
+    transform: scale(0.98);
+}
+
+/* Focus Mode States */
+.skill-card.skill-hidden {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    pointer-events: none;
+}
+
+.skill-card.skill-selected {
+    z-index: 40;
+    border-color: #b6d3fe;
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 0 0 1px #b6d3fe, 0 20px 50px -10px rgba(182, 211, 254, 0.1);
+    transform: scale(1.05);
+    cursor: default;
+}
+
+/* Ensure selected card stays centered-ish or hero (Visual trick: we hide others, so it pops) 
+   For a true center, we'd need layout shifts. 
+   Keeping it in place but highlighted is smoother for performance and UX continuity.
+*/
+
+/* Card Content Standard Styles */
+.skill-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.skill-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.skill-icon {
+    font-size: 1.5rem;
+    color: #94a3b8;
+    transition: color 0.3s;
+}
+
+.skill-card:hover .skill-icon,
+.skill-card.skill-selected .skill-icon {
+    color: #b6d3fe;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.skill-tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 999px;
+    color: #94a3b8;
+    border: 1px solid transparent;
+}
+
+.skill-desc {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.skill-level-container {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.skill-level-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #b6d3fe);
+    width: 0%;
+    transition: width 1s ease-out;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .skill-card,
+    .skill-level-bar,
+    .skills-container,
+    .skills-header,
+    .skill-back-btn {
+        transition: none !important;
+    }
+
+    #skills-canvas {
+        display: none;
+    }
+}
