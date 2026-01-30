@@ -47,13 +47,34 @@ class SkillsCloud {
             'git': 'fab fa-git-alt',
             'docker': 'fab fa-docker',
             'linux': 'fab fa-linux',
-            'tailwind': 'fab fa-css3', // Fallback
+            'tailwind': 'fab fa-css3',
             'sql': 'fas fa-database',
             'java': 'fab fa-java',
             'automation': 'fas fa-robot',
             'python': 'fab fa-python',
             'ai': 'fas fa-brain'
         };
+
+        // Direct Unicode fallbacks for icons that may fail CSS extraction
+        this.unicodeMap = {
+            'fab fa-linux': '\uf17c',
+            'fab fa-js': '\uf3b8',
+            'fab fa-php': '\uf457',
+            'fab fa-html5': '\uf13b',
+            'fab fa-css3-alt': '\uf38b',
+            'fab fa-css3': '\uf13c',
+            'fab fa-docker': '\uf395',
+            'fab fa-git-alt': '\uf841',
+            'fab fa-java': '\uf4e4',
+            'fab fa-python': '\uf3e2',
+            'fas fa-database': '\uf1c0',
+            'fas fa-robot': '\uf544',
+            'fas fa-brain': '\uf5dc'
+        };
+
+        // Clear shape cache on init to ensure fresh rendering
+        this.shapes = { 'default': this.genBlob() };
+
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -152,7 +173,7 @@ class SkillsCloud {
         // Cache check
         if (this.shapes[iconClass]) return this.shapes[iconClass];
 
-        const size = 250; // Increased sample resolution
+        const size = 250;
         const tempCanvas = document.createElement('canvas');
         tempCanvas.width = size;
         tempCanvas.height = size;
@@ -160,30 +181,39 @@ class SkillsCloud {
 
         // Identify Font Family and Unicode from class
         const isBrand = iconClass.includes('fab');
-        const fontFamily = isBrand ? '"Font Awesome 6 Brands"' : '"Font Awesome 6 Free"';
+        const fontFamily = isBrand ? 'Font Awesome 6 Brands' : 'Font Awesome 6 Free';
         const fontWeight = isBrand ? '400' : '900';
 
-        // Wait for fonts to ensure render
-        await document.fonts.ready;
+        // Explicit font loading check - wait for specific font
+        try {
+            await document.fonts.load(`${fontWeight} 48px "${fontFamily}"`);
+        } catch (e) {
+            // Fallback: wait a bit and hope font is loaded
+            await new Promise(r => setTimeout(r, 500));
+        }
 
-        // Create a temporary element to get the character code
-        const tempI = document.createElement('i');
-        tempI.className = iconClass;
-        tempI.style.display = 'none';
-        document.body.appendChild(tempI);
-        const content = window.getComputedStyle(tempI, ':before').content;
-        const charCode = content.replace(/['"]/g, '');
-        document.body.removeChild(tempI);
+        // Get character code from our Unicode map (priority) or CSS
+        let charCode = this.unicodeMap[iconClass];
+        if (!charCode) {
+            const tempI = document.createElement('i');
+            tempI.className = iconClass;
+            tempI.style.cssText = 'position:absolute;visibility:hidden;';
+            document.body.appendChild(tempI);
+            const content = window.getComputedStyle(tempI, ':before').content;
+            charCode = content.replace(/['"]/g, '');
+            document.body.removeChild(tempI);
+        }
 
-        // Render to offscreen
+        // Render to offscreen canvas
         tempCtx.clearRect(0, 0, size, size);
         tempCtx.fillStyle = 'white';
-        tempCtx.font = `${fontWeight} ${size * 0.85}px ${fontFamily}`;
+        tempCtx.font = `${fontWeight} ${size * 0.85}px "${fontFamily}"`;
         tempCtx.textAlign = 'center';
         tempCtx.textBaseline = 'middle';
         tempCtx.fillText(charCode, size / 2, size / 2);
 
         // Extract points
+
         const imgData = tempCtx.getImageData(0, 0, size, size).data;
         const validCoords = [];
 
@@ -247,8 +277,8 @@ class SkillsCloud {
         let textRaw = label ? await this.sampleText(label) : [];
 
         const finalPts = [];
-        // Lower density for text as requested (e.g., 12% for text, 88% for logo)
-        const nLogo = Math.floor(this.maxPoints * 0.88);
+        // Higher density for text (30% text, 70% logo)
+        const nLogo = Math.floor(this.maxPoints * 0.70);
         const nText = this.maxPoints - nLogo;
 
         // --- Layout Parameters (Enlarged Text, Minimal Gap) ---
