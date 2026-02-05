@@ -576,22 +576,24 @@
                             <div class="pod-glow"></div>
                             <span class="pod-year">2025 - 2026</span>
                             <h3 class="pod-title text-silver-gradient">Freelance & Innovation</h3>
-                            <div class="pod-desc space-y-3">
-                                <p><strong class="text-indigo-400">Belmehdi WebDev :</strong> Vente de sites vitrines &
-                                    solutions d'automatisation sur-mesure.</p>
-                                <p><strong class="text-indigo-400">R&D Personnel :</strong> Développement de SaaS et
-                                    finalisation du cursus universitaire.</p>
-                                <div class="mt-4 p-3 bg-indigo-500/10 border border-indigo-500/20 rounded-lg">
-                                    <p class="text-white font-bold text-xs uppercase tracking-wider mb-1">Objectif
-                                        Prioritaire</p>
-                                    <p class="text-indigo-300 text-sm">Recherche active d'un stage à partir du <span
-                                            class="text-white">2 Mars 2026</span>.</p>
+                            <div class="pod-desc space-y-4">
+                                <div class="space-y-2">
+                                    <p><strong class="text-indigo-400">Belmehdi WebDev :</strong> Vente de sites
+                                        vitrines & solutions d'automatisation sur-mesure.</p>
+                                    <p><strong class="text-indigo-400">R&D Personnel :</strong> Développement de SaaS et
+                                        finalisation du cursus universitaire.</p>
+                                </div>
+                                <div class="mt-6 p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-xl">
+                                    <p class="text-white font-bold text-xs uppercase tracking-widest mb-2 opacity-70">
+                                        Objectif Prioritaire</p>
+                                    <p class="text-indigo-300">Recherche active d'un stage à partir du <span
+                                            class="text-white font-bold">2 Mars 2026</span>.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="pod-info">
+                        <div class="pod-info milestone-photo-large">
                             <img src="assets/images/Presentation/Photo_Pro.png" alt="Camil Belmehdi"
-                                class="w-full h-48 object-cover rounded-lg border border-white/10 hover:brightness-110 transition-all">
+                                class="w-full h-full object-cover rounded-lg border border-white/10 hover:brightness-110 transition-all">
                         </div>
                     </div>
                 </div><!-- /camera-rig -->
@@ -753,7 +755,7 @@
                 <div class="netflix-poster-wrapper" data-index="0">
                     <div class="netflix-poster">
                         <div class="poster-image"
-                            style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=800');">
+                            style="background-image: url('assets/images/projets/site builder.png');">
                         </div>
                         <div class="poster-overlay"></div>
                         <div class="poster-rating">9.2</div>
@@ -925,7 +927,7 @@
                 <div class="cinema-row">
                     <div class="cinema-card">
                         <div class="card-bg"
-                            style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=800');">
+                            style="background-image: url('assets/images/projets/site builder.png');">
                         </div>
                         <div class="card-vignette"></div>
                         <div class="card-content">

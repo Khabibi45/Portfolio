@@ -203,6 +203,17 @@
     justify-content: center;
 }
 
+.pod-info.milestone-photo-large {
+    width: 42%;
+    /* Enlarged from 42% */
+}
+
+.pod-info.milestone-photo-large img {
+    height: 400px;
+    /* Taller image for impact */
+    box-shadow: 0 0 40px rgba(129, 140, 248, 0.15);
+}
+
 .info-label {
     font-size: 0.7rem;
     text-transform: uppercase;

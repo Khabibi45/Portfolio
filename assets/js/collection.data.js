@@ -11,7 +11,7 @@ const projectData = [
         isInternal: false,
         href: "https://delfoin-multiservices.onrender.com",
         coverCandidates: [
-            "./pics_Montagne.png",
+            "./assets/images/projets/site builder.png",
             "./assets/projects/web-builder-delfoin/cover.webp",
             "./assets/projects/web-builder-delfoin/cover.jpg"
         ]
