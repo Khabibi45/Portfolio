@@ -1,0 +1,87 @@
+/**
+ * Prototype #02 - Time Folding Corridor
+ * Space folds from corridor to spiral
+ */
+
+.proto-time-folding {
+    min-height: 300vh;
+    background: #0a0a0f;
+    padding: 4rem 0;
+    perspective: 1000px;
+}
+
+.proto-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.proto-title {
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.proto-subtitle {
+    text-align: center;
+    font-size: 1rem;
+    color: #64748b;
+    margin-bottom: 4rem;
+    font-family: 'Space Mono', monospace;
+}
+
+.corridor-container {
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.corridor-panel {
+    position: relative;
+    margin-bottom: 150px;
+    opacity: 0.3;
+    transform: rotateX(15deg) translateZ(-100px);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.corridor-panel.active {
+    opacity: 1;
+    transform: rotateX(0) translateZ(0);
+}
+
+.panel-content {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.5rem;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transition: clip-path 0.6s ease, box-shadow 0.4s ease;
+}
+
+.corridor-panel.active .panel-content {
+    clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
+    box-shadow: 0 0 50px rgba(129, 140, 248, 0.1);
+}
+
+.panel-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: #818cf8;
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.panel-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.panel-desc {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    line-height: 1.7;
+}

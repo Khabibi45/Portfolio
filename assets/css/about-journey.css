@@ -1,32 +1,31 @@
 /**
- * CINEMATIC ODYSSEY - About Me Journey
- * Immersive vertical storytelling styles
+ * CINEMATIC JOURNEY - PERFORMANCE OPTIMIZED
+ * No blur, no backdrop-filter, simple transforms
  */
+
+/* ========================================
+   1. SCENE CONTAINER
+   ======================================== */
 
 .about-journey-container {
     position: relative;
-    max-width: 900px;
-    margin: 4rem auto;
-    padding: 0 2rem 5rem 2rem;
-    /* Reduced from 10rem */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem 2rem;
 }
 
-/* Vertical Bridge for Skills */
-.journey-data-line.skills-bridge {
-    bottom: unset;
-    height: 120px;
-    top: -20px;
-    opacity: 0.8;
-}
+/* ========================================
+   2. LAYERS (lightweight)
+   ======================================== */
 
-/* Central Data Cable */
 .journey-data-line {
     position: absolute;
     left: 50%;
     top: 0;
     bottom: 0;
     width: 2px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
     transform: translateX(-50%);
     z-index: 1;
 }
@@ -37,22 +36,50 @@
     left: 0;
     width: 100%;
     height: 0%;
-    /* Managed by GSAP */
     background: linear-gradient(to bottom, transparent, #818cf8, #c084fc);
-    box-shadow: 0 0 20px rgba(129, 140, 248, 0.8);
+    box-shadow: 0 0 20px rgba(129, 140, 248, 0.6);
 }
 
-/* Journey Pods (Milestones) */
+/* Rail glow - simple */
+.rail-glow {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, rgba(129, 140, 248, 0.08), transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Hide expensive layers */
+.noise-overlay,
+.dust-particles,
+.ambient-beams {
+    display: none;
+}
+
+/* Camera rig - no transforms */
+.camera-rig {
+    position: relative;
+}
+
+/* ========================================
+   3. JOURNEY PODS - SIMPLE TRANSFORMS
+   ======================================== */
+
 .journey-pod {
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-bottom: 200px;
-    z-index: 2;
-    opacity: 0;
-    transform: translateY(50px) scale(0.95);
+    margin-bottom: 180px;
+    z-index: 10;
+
+    /* Transitions for state changes */
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .journey-pod.left {
@@ -63,7 +90,21 @@
     flex-direction: row-reverse;
 }
 
-/* The Point On The Line */
+/* States */
+.journey-pod.inactive {
+    opacity: 0.4;
+    transform: translateY(20px);
+}
+
+.journey-pod.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   4. POD NODE
+   ======================================== */
+
 .pod-node {
     position: absolute;
     left: 50%;
@@ -74,50 +115,62 @@
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    z-index: 3;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 15;
+    transition: all 0.4s ease;
 }
 
 .journey-pod.active .pod-node {
     border-color: #818cf8;
     box-shadow: 0 0 15px #818cf8;
     background: #818cf8;
-    transform: translate(-50%, -50%) scale(1.5);
+    transform: translate(-50%, -50%) scale(1.3);
 }
 
-/* Content Card */
+/* Hide portal ring */
+.portal-ring {
+    display: none;
+}
+
+/* ========================================
+   5. POD CARD - NO BACKDROP-FILTER
+   ======================================== */
+
 .pod-card {
     width: 42%;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(15px);
+    background: rgba(15, 23, 42, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
-    padding: 2.5rem;
+    padding: 2rem 2.5rem;
     position: relative;
-    overflow: hidden;
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .journey-pod.active .pod-card {
-    border-color: rgba(129, 140, 248, 0.4);
-    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(129, 140, 248, 0.3);
+    box-shadow: 0 0 30px rgba(129, 140, 248, 0.1);
 }
 
-.pod-card::before {
-    content: '';
+/* Simple glow */
+.pod-glow {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #818cf8, transparent);
-    transform: translateX(-100%);
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    inset: -20px;
+    background: radial-gradient(ellipse at center, rgba(129, 140, 248, 0.12), transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    border-radius: 30px;
+    transition: opacity 0.4s ease;
 }
 
-.journey-pod.active .pod-card::before {
-    transform: translateX(100%);
+/* Hide expensive pseudo-elements */
+.pod-card::before,
+.pod-card::after {
+    display: none;
 }
+
+/* ========================================
+   6. CONTENT
+   ======================================== */
 
 .pod-year {
     font-family: 'Space Mono', monospace;
@@ -143,18 +196,11 @@
     line-height: 1.6;
 }
 
-/* Decorative Info */
 .pod-info {
     width: 42%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    opacity: 0.3;
-    transition: opacity 0.8s ease;
-}
-
-.journey-pod.active .pod-info {
-    opacity: 1;
 }
 
 .info-label {
@@ -172,7 +218,18 @@
     font-variant-numeric: tabular-nums;
 }
 
-/* Mobile Adjustments */
+/* ========================================
+   7. HERO STATION
+   ======================================== */
+
+.journey-pod.hero-station.active .pod-card {
+    box-shadow: 0 0 50px rgba(129, 140, 248, 0.15);
+}
+
+/* ========================================
+   8. MOBILE
+   ======================================== */
+
 @media (max-width: 768px) {
     .journey-data-line {
         left: 2rem;
@@ -191,10 +248,29 @@
     .journey-pod {
         flex-direction: column;
         align-items: flex-start;
+        margin-bottom: 120px;
     }
 
     .pod-info {
         margin-top: 1.5rem;
-        opacity: 1;
+    }
+
+    .rail-glow {
+        display: none;
+    }
+}
+
+/* ========================================
+   9. REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .journey-pod {
+        transition: opacity 0.2s ease;
+        transform: none !important;
+    }
+
+    .pod-node {
+        transition: none;
     }
 }

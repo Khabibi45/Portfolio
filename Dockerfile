@@ -8,7 +8,7 @@ RUN a2enmod rewrite
 # RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev && docker-php-ext-install gd
 
 # Configure PHP for production logging
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 RUN echo "log_errors = On" >> "$PHP_INI_DIR/php.ini"
 RUN echo "error_log = /dev/stderr" >> "$PHP_INI_DIR/php.ini"
 

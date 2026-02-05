@@ -1,0 +1,76 @@
+/**
+ * Prototype #04 - Memory Glass Museum
+ */
+
+.proto-glass-museum {
+    min-height: 300vh;
+    background: linear-gradient(180deg, #0a0a0f 0%, #0f1419 100%);
+    padding: 4rem 0;
+}
+
+.museum-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.vitrine {
+    position: relative;
+    margin-bottom: 180px;
+    display: flex;
+    justify-content: center;
+}
+
+.vitrine-glass {
+    position: absolute;
+    inset: -20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 50%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.vitrine.active .vitrine-glass {
+    opacity: 1;
+}
+
+.vitrine-content {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 480px;
+    opacity: 0.35;
+    transform: scale(0.95);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vitrine.active .vitrine-content {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 60px rgba(129, 140, 248, 0.08);
+}
+
+.vitrine-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: #818cf8;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.vitrine-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.vitrine-desc {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    line-height: 1.7;
+}

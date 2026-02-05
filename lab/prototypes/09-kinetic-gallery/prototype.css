@@ -1,0 +1,63 @@
+/**
+ * Prototype #09 - Kinetic Gallery Snap
+ */
+
+.proto-kinetic-gallery {
+    min-height: 400vh;
+    background: #0a0a0f;
+    padding: 4rem 0;
+}
+
+.gallery-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.gallery-frame {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.frame-content {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 3rem;
+    max-width: 500px;
+    width: 100%;
+    opacity: 0.3;
+    transform: translateY(40px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-frame.active .frame-content {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+}
+
+.frame-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: #818cf8;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.frame-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.frame-desc {
+    font-size: 1rem;
+    color: #94a3b8;
+    line-height: 1.7;
+}

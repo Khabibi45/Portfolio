@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  portfolio:
+    build: .
+    container_name: belmehdi_portfolio
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    restart: unless-stopped

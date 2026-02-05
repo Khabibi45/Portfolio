@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="assets/css/about-lab.css">
     <link rel="stylesheet" href="assets/css/about-journey.css">
     <link rel="stylesheet" href="assets/css/transitions-lab.css">
+    <link rel="stylesheet" href="assets/css/awwwards-cards.css">
     <link rel="import" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -837,6 +838,205 @@
     <!-- PROJECTS LAB SECTION -->
     <section id="tab-projects" class="tab-panel">
         <section id="projects-lab" class="pb-32">
+
+            <!-- ============================================ -->
+            <!-- AWWWARDS LAB: 5 Premium Card Concepts -->
+            <!-- ============================================ -->
+            <div class="aww-showcase max-w-7xl mx-auto">
+                <h2
+                    class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-500 mb-2 text-center">
+                    🏆 AWWWARDS LAB
+                </h2>
+                <p class="text-gray-400 text-center mb-12">5 animations exceptionnelles pour cartes de projets</p>
+
+                <!-- 1. LIQUID MORPHING -->
+                <div class="mb-20">
+                    <h3 class="aww-section-title"><span class="icon">🌊</span> Liquid Morphing Cards</h3>
+                    <div id="liquid-demo" class="aww-grid">
+                        <div class="liquid-card">
+                            <div class="card-image"
+                                style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800');">
+                            </div>
+                            <div class="card-content">
+                                <span class="aww-card-tag">React</span>
+                                <h4 class="aww-card-title">FLUX Dashboard</h4>
+                                <p class="aww-card-desc">Interface fluide et organique</p>
+                            </div>
+                        </div>
+                        <div class="liquid-card">
+                            <div class="card-image"
+                                style="background-image: url('https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800');">
+                            </div>
+                            <div class="card-content">
+                                <span class="aww-card-tag">Vue.js</span>
+                                <h4 class="aww-card-title">MORPH Studio</h4>
+                                <p class="aww-card-desc">Design tool nouvelle génération</p>
+                            </div>
+                        </div>
+                        <div class="liquid-card">
+                            <div class="card-image"
+                                style="background-image: url('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=800');">
+                            </div>
+                            <div class="card-content">
+                                <span class="aww-card-tag">Three.js</span>
+                                <h4 class="aww-card-title">WAVE Portal</h4>
+                                <p class="aww-card-desc">Experience 3D immersive</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. HOLOGRAPHIC DEPTH -->
+                <div class="mb-20">
+                    <h3 class="aww-section-title"><span class="icon">🎭</span> Holographic Depth Cards</h3>
+                    <div id="holo-demo" class="aww-grid">
+                        <div class="holo-card">
+                            <div class="holo-layer"
+                                style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800');">
+                            </div>
+                            <div class="holo-layer"
+                                style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800');">
+                            </div>
+                            <div class="holo-layer"
+                                style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800');">
+                            </div>
+                            <div class="holo-content">
+                                <span class="aww-card-tag">Hologram</span>
+                                <h4 class="aww-card-title">RETRO OS</h4>
+                                <p class="aww-card-desc">Nostalgie cyberpunk</p>
+                            </div>
+                        </div>
+                        <div class="holo-card">
+                            <div class="holo-layer"
+                                style="background-image: url('https://images.unsplash.com/photo-1634017831461-452137e7724a?q=80&w=800');">
+                            </div>
+                            <div class="holo-layer"
+                                style="background-image: url('https://images.unsplash.com/photo-1634017831461-452137e7724a?q=80&w=800');">
+                            </div>
+                            <div class="holo-layer"
+                                style="background-image: url('https://images.unsplash.com/photo-1634017831461-452137e7724a?q=80&w=800');">
+                            </div>
+                            <div class="holo-content">
+                                <span class="aww-card-tag">3D</span>
+                                <h4 class="aww-card-title">PRISM Core</h4>
+                                <p class="aww-card-desc">Parallax extrême</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. CRYSTALLINE SHATTER -->
+                <div class="mb-20">
+                    <h3 class="aww-section-title"><span class="icon">🧊</span> Crystalline Shatter Cards</h3>
+                    <div id="crystal-demo" class="aww-grid">
+                        <div class="crystal-card">
+                            <div class="crystal-fragments"></div>
+                            <div class="crystal-content">
+                                <span class="aww-card-tag">Voronoi</span>
+                                <h4 class="aww-card-title">ICE Protocol</h4>
+                                <p class="aww-card-desc">Tessellation dynamique</p>
+                            </div>
+                        </div>
+                        <div class="crystal-card">
+                            <div class="crystal-fragments"></div>
+                            <div class="crystal-content">
+                                <span class="aww-card-tag">SVG</span>
+                                <h4 class="aww-card-title">FROST Engine</h4>
+                                <p class="aww-card-desc">Brisure magnétique</p>
+                            </div>
+                        </div>
+                        <div class="crystal-card">
+                            <div class="crystal-fragments"></div>
+                            <div class="crystal-content">
+                                <span class="aww-card-tag">WebGL</span>
+                                <h4 class="aww-card-title">SHARD Network</h4>
+                                <p class="aww-card-desc">Fragments lumineux</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. MAGNETIC CONSTELLATION -->
+                <div class="mb-20">
+                    <h3 class="aww-section-title"><span class="icon">🌀</span> Magnetic Constellation Cards</h3>
+                    <div id="constellation-demo">
+                        <canvas class="constellation-canvas"></canvas>
+                        <div class="constellation-grid">
+                            <div class="constellation-card">
+                                <div class="particle" style="top: 10%; left: 20%;"></div>
+                                <div class="particle" style="top: 80%; left: 70%;"></div>
+                                <div class="constellation-content">
+                                    <span class="aww-card-tag">Canvas</span>
+                                    <h4 class="aww-card-title">NEXUS Hub</h4>
+                                    <p class="aww-card-desc">Connexions vivantes</p>
+                                </div>
+                            </div>
+                            <div class="constellation-card">
+                                <div class="particle" style="top: 20%; left: 80%;"></div>
+                                <div class="particle" style="top: 70%; left: 10%;"></div>
+                                <div class="constellation-content">
+                                    <span class="aww-card-tag">API</span>
+                                    <h4 class="aww-card-title">ORBITAL Link</h4>
+                                    <p class="aww-card-desc">Réseau intelligent</p>
+                                </div>
+                            </div>
+                            <div class="constellation-card">
+                                <div class="particle" style="top: 5%; left: 50%;"></div>
+                                <div class="particle" style="top: 90%; left: 30%;"></div>
+                                <div class="constellation-content">
+                                    <span class="aww-card-tag">Real-time</span>
+                                    <h4 class="aww-card-title">PULSE Stream</h4>
+                                    <p class="aww-card-desc">Données en flux</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. CINEMATIC REVEAL -->
+                <div class="mb-20">
+                    <h3 class="aww-section-title"><span class="icon">🎬</span> Cinematic Reveal Cards</h3>
+                    <div id="cinema-demo">
+                        <div class="cinema-grid">
+                            <div class="cinema-card">
+                                <div class="card-bg"
+                                    style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800');">
+                                </div>
+                                <div class="card-vignette"></div>
+                                <div class="card-content">
+                                    <span class="aww-card-tag">Cinematic</span>
+                                    <h4 class="aww-card-title">NOIR Gallery</h4>
+                                </div>
+                            </div>
+                            <div class="cinema-card">
+                                <div class="card-bg"
+                                    style="background-image: url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=800');">
+                                </div>
+                                <div class="card-vignette"></div>
+                                <div class="card-content">
+                                    <span class="aww-card-tag">Focus</span>
+                                    <h4 class="aww-card-title">DEPTH Field</h4>
+                                </div>
+                            </div>
+                            <div class="cinema-card">
+                                <div class="card-bg"
+                                    style="background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=800');">
+                                </div>
+                                <div class="card-vignette"></div>
+                                <div class="card-content">
+                                    <span class="aww-card-tag">Rack</span>
+                                    <h4 class="aww-card-title">SCENE Cut</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- END AWWWARDS LAB -->
+
+            <hr class="border-white/10 my-16 max-w-7xl mx-auto">
+
             <h2 class="lab-section-title">Motion Gallery</h2>
 
             <!-- 1. Cinematic Reveal Frame -->
@@ -1003,7 +1203,8 @@
 
                 <!-- NEW: CINEMATIC ODYSSEY JOURNEY -->
                 <div class="about-journey-container" id="innovation-path">
-                    <h2 class="text-6xl font-black text-center mb-20 tracking-tighter">THE PATH OF INNOVATION</h2>
+                    <h2 class="text-6xl font-black text-center mb-20 tracking-tighter">Mon Parcours Scolaire &
+                        Professionnel </h2>
 
                     <div class="journey-data-line">
                         <div class="journey-data-progress" id="journey-progress"></div>
@@ -1013,10 +1214,11 @@
                     <div class="journey-pod left" data-pod="1">
                         <div class="pod-node"></div>
                         <div class="pod-card">
-                            <span class="pod-year">2018 - 2021</span>
+                            <span class="pod-year">2022</span>
                             <h3 class="pod-title">BAC STI2D SIN</h3>
-                            <p class="pod-desc">L'entrée dans le monde du numérique. Spécialisation SIN (Systèmes
-                                d'Information et Numérique) et découverte des premiers langages de programmation.</p>
+                            <p class="pod-desc">Lycée polyvalent Jean Jaurès à Carmaux. L'entrée dans le monde du
+                                numérique. Spécialisation SIN (Systèmes d'Information et Numérique) et découverte des
+                                premiers langages de programmation.</p>
                         </div>
                         <div class="pod-info">
                             <span class="info-label">FIRST COMMIT</span>
@@ -1028,11 +1230,11 @@
                     <div class="journey-pod right" data-pod="2">
                         <div class="pod-node"></div>
                         <div class="pod-card">
-                            <span class="pod-year">2021 - 2024</span>
+                            <span class="pod-year">2023 - 2026</span>
                             <h3 class="pod-title">BUT INFORMATIQUE</h3>
-                            <p class="pod-desc">IUT Paul-Sabatier. Approfondissement de l'architecture logicielle, des
-                                réseaux et de la sécurité. Focus sur le déploiement et la sécurisation d'applications.
-                            </p>
+                            <p class="pod-desc">IUT III Paul-Sabatier à Toulouse. Approfondissement de l'architecture
+                                logicielle, des réseaux et de la sécurité. Focus sur le déploiement et la sécurisation
+                                d'applications.</p>
                         </div>
                         <div class="pod-info">
                             <span class="info-label">ALGORITHMS</span>
@@ -1044,10 +1246,11 @@
                     <div class="journey-pod left" data-pod="3">
                         <div class="pod-node"></div>
                         <div class="pod-card">
-                            <span class="pod-year">2023 (STAGE)</span>
+                            <span class="pod-year">2025 (STAGE)</span>
                             <h3 class="pod-title">ADONIS EDUCATION</h3>
-                            <p class="pod-desc">Immersion professionnelle. Maintenance d'API complexes, automatisation
-                                de workflows critiques et gestion d'écosystèmes scalables.</p>
+                            <p class="pod-desc">Immersion professionnelle. Maintenance de multiples sites web, création
+                                de site Wordpress et utilisation de workflow n8n, manipulation d'Api et de bases de
+                                données.</p>
                         </div>
                         <div class="pod-info">
                             <span class="info-label">AUTOMATION</span>
@@ -1065,8 +1268,8 @@
                                 la recherche du prochain défi d'ingénierie.</p>
                         </div>
                         <div class="pod-info">
-                            <span class="info-label">CURRENT STATUS</span>
-                            <span class="info-metric">ACTIVE SEARCH</span>
+                            <img src="assets/images/Presentation/Photo_Pro.png" alt="Camil Belmehdi"
+                                class="w-full h-48 object-cover rounded-lg border border-white/10 hover:brightness-110 transition-all">
                         </div>
                     </div>
 
@@ -1136,27 +1339,27 @@
                             <div class="timeline-step" data-step="1">
                                 <div class="step-number">01</div>
                                 <div>
-                                    <h4 class="text-2xl font-bold text-white mb-2">Bac STI2D SIN</h4>
-                                    <p class="text-gray-400">L'éveil d'une passion pour les systèmes informationnels et
-                                        le numérique.</p>
+                                    <h4 class="text-2xl font-bold text-white mb-2">2022 - Bac STI2D SIN</h4>
+                                    <p class="text-gray-400">Lycée polyvalent Jean Jaurès à Carmaux. L'entrée dans le
+                                        monde du numérique, spécialisation SIN.</p>
                                 </div>
                             </div>
                             <!-- Step 2 -->
                             <div class="timeline-step" data-step="2">
                                 <div class="step-number">02</div>
                                 <div>
-                                    <h4 class="text-2xl font-bold text-white mb-2">BUT Informatique (Sécu)</h4>
-                                    <p class="text-gray-400">IUT Paul-Sabatier : Déploiement et sécurisation
-                                        d'environnements d'applications.</p>
+                                    <h4 class="text-2xl font-bold text-white mb-2">2023 - 2026 - BUT Informatique</h4>
+                                    <p class="text-gray-400">IUT III Paul-Sabatier à Toulouse. Approfondissement de
+                                        l'architecture logicielle et de la sécurité.</p>
                                 </div>
                             </div>
                             <!-- Step 3 -->
                             <div class="timeline-step" data-step="3">
                                 <div class="step-number">03</div>
                                 <div>
-                                    <h4 class="text-2xl font-bold text-white mb-2">Adonis Education (Stage)</h4>
-                                    <p class="text-gray-400">Maintenance API, automatisation de workflows et gestion
-                                        écosystème.</p>
+                                    <h4 class="text-2xl font-bold text-white mb-2">2025 - Adonis Education (Stage)</h4>
+                                    <p class="text-gray-400">Maintenance web, création WordPress et utilisation de
+                                        workflows n8n.</p>
                                 </div>
                             </div>
                         </div>
@@ -1477,6 +1680,7 @@ async function automate() {
 
     <script src="assets/js/about-lab.js"></script>
     <script src="assets/js/transitions-lab.js"></script>
+    <script src="assets/js/awwwards-cards.js"></script>
 </body>
 
 </html>

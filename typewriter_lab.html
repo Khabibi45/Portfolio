@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typewriter Effect Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Style A: Classic Terminal */
+        .cursor-block {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: #4ade80;
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+        }
+
+        /* Style B: Smooth Modern */
+        .cursor-line {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: #38bdf8;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="p-10 flex flex-col gap-10 items-center justify-center min-h-screen">
+
+    <h1 class="text-3xl font-bold mb-10 text-slate-400">Typewriter Lab</h1>
+
+    <!-- Option 1: Classic Terminal -->
+    <div
+        class="w-full max-w-2xl p-6 bg-black rounded-lg border border-gray-800 shadow-2xl relative overflow-hidden group hover:border-green-500/50 transition-colors">
+        <div class="absolute top-2 left-4 text-xs text-gray-500">STYLE A: CLASSIC TERMINAL</div>
+        <div id="demo-a" class="mt-4 text-green-400 font-mono text-sm leading-relaxed min-h-[100px]"></div>
+    </div>
+
+    <!-- Option 2: Modern Clean -->
+    <div
+        class="w-full max-w-2xl p-6 bg-slate-900/50 rounded-xl border border-slate-700 backdrop-blur-sm shadow-xl relative group hover:border-cyan-500/50 transition-colors">
+        <div class="absolute top-2 left-4 text-xs text-slate-500">STYLE B: MODERN CLEAN</div>
+        <div id="demo-b" class="mt-4 text-cyan-100 font-sans text-sm leading-relaxed min-h-[100px]"></div>
+    </div>
+
+    <!-- Option 3: Glass Overlay (Target Context) -->
+    <div
+        class="w-full max-w-2xl h-64 relative rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-indigo-900 to-slate-900 flex items-center justify-center">
+        <div
+            class="absolute inset-0 bg-[url('https://cdn.simpleicons.org/react/white')] bg-no-repeat bg-center opacity-10 blur-sm">
+        </div>
+        <div class="absolute top-2 left-4 text-xs text-indigo-300 z-10">STYLE C: CONTEXT OVERLAY</div>
+
+        <!-- The Overlay Box -->
+        <div
+            class="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md p-4 rounded-lg border border-white/10">
+            <div id="demo-c" class="text-white font-mono text-xs md:text-sm leading-relaxed"></div>
+        </div>
+    </div>
+
+    <button onclick="runTests()"
+        class="px-6 py-2 bg-blue-600 hover:bg-blue-500 rounded text-white font-bold transition">Re-Run
+        Animations</button>
+
+    <script>
+        const textSample = "Structurer une page de façon sémantique (header/main/section)\nConstruire des interfaces accessibles et performantes.\nIntégrer des médias (images responsive, vidéo, meta SEO).";
+
+        function typeWriter(elementId, text, speed, cursorClass) {
+            const el = document.getElementById(elementId);
+            el.innerHTML = '<span class="cursor"></span>';
+            const cursor = document.createElement('span');
+            cursor.className = cursorClass;
+            el.appendChild(cursor);
+
+            let i = 0;
+            el.innerHTML = '';
+            el.appendChild(cursor);
+
+            const interval = setInterval(() => {
+                if (i < text.length) {
+                    const char = text.charAt(i);
+                    const txtNode = document.createTextNode(char === '\n' ? '' : char);
+                    if (char === '\n') {
+                        el.insertBefore(document.createElement('br'), cursor);
+                    } else {
+                        el.insertBefore(txtNode, cursor);
+                    }
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, speed);
+        }
+
+        function runTests() {
+            typeWriter('demo-a', textSample, 30, 'cursor-block');
+            typeWriter('demo-b', textSample, 20, 'cursor-line');
+            typeWriter('demo-c', textSample, 15, 'cursor-line');
+        }
+
+        // Auto start
+        setTimeout(runTests, 500);
+    </script>
+</body>
+
+</html>

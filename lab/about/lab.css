@@ -1,0 +1,312 @@
+/**
+ * ABOUT LAB - UI Styles
+ * Premium dark theme for prototype experimentation
+ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --lab-bg: #0a0a0f;
+    --lab-sidebar: #111118;
+    --lab-border: rgba(255, 255, 255, 0.08);
+    --lab-text: #e2e8f0;
+    --lab-muted: #64748b;
+    --lab-accent: #818cf8;
+    --lab-accent-glow: rgba(129, 140, 248, 0.3);
+}
+
+html,
+body {
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    background: var(--lab-bg);
+    color: var(--lab-text);
+    overflow: hidden;
+}
+
+/* ========================================
+   SIDEBAR
+   ======================================== */
+
+.lab-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 260px;
+    background: var(--lab-sidebar);
+    border-right: 1px solid var(--lab-border);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.lab-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--lab-border);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.lab-logo {
+    font-size: 1.5rem;
+}
+
+.lab-header h1 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--lab-accent);
+}
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
+
+.lab-nav {
+    padding: 1rem 0.75rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.lab-nav-item {
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--lab-muted);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Space Mono', monospace;
+}
+
+.lab-nav-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--lab-text);
+}
+
+.lab-nav-item.active {
+    background: rgba(129, 140, 248, 0.15);
+    color: var(--lab-accent);
+    border-left: 2px solid var(--lab-accent);
+}
+
+.lab-nav-item.featured {
+    color: #fbbf24;
+    font-weight: 600;
+}
+
+.lab-nav-item.featured.active {
+    background: rgba(251, 191, 36, 0.1);
+    border-left-color: #fbbf24;
+}
+
+/* ========================================
+   CONTROLS
+   ======================================== */
+
+.lab-controls {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--lab-border);
+}
+
+.lab-controls h2 {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--lab-muted);
+    margin-bottom: 1rem;
+}
+
+/* Toggle */
+.lab-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+}
+
+.lab-toggle input {
+    display: none;
+}
+
+.toggle-slider {
+    width: 36px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    position: relative;
+    transition: background 0.2s ease;
+}
+
+.toggle-slider::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    background: var(--lab-muted);
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.lab-toggle input:checked+.toggle-slider {
+    background: var(--lab-accent);
+}
+
+.lab-toggle input:checked+.toggle-slider::after {
+    left: 19px;
+    background: #fff;
+}
+
+.toggle-label {
+    font-size: 0.8rem;
+    color: var(--lab-text);
+}
+
+/* Slider */
+.lab-slider {
+    margin-top: 1rem;
+}
+
+.lab-slider label {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--lab-text);
+}
+
+.lab-slider input[type="range"] {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    appearance: none;
+    cursor: pointer;
+}
+
+.lab-slider input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background: var(--lab-accent);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* ========================================
+   FPS COUNTER
+   ======================================== */
+
+.lab-fps {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--lab-border);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    display: flex;
+    gap: 0.5rem;
+    color: var(--lab-muted);
+}
+
+#fps-counter {
+    color: #22c55e;
+    font-weight: 700;
+}
+
+/* ========================================
+   BACK LINK
+   ======================================== */
+
+.lab-back {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--lab-border);
+    font-size: 0.8rem;
+    color: var(--lab-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.lab-back:hover {
+    color: var(--lab-text);
+}
+
+/* ========================================
+   VIEWPORT
+   ======================================== */
+
+.lab-viewport {
+    margin-left: 260px;
+    height: 100vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.prototype-container {
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ========================================
+   PERFORMANCE MODE
+   ======================================== */
+
+body.perf-mode .prototype-container {
+    --blur-enabled: 0;
+    --particles-enabled: 0;
+    --glow-enabled: 0;
+}
+
+body.perf-mode * {
+    filter: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+/* ========================================
+   REDUCED MOTION MODE
+   ======================================== */
+
+body.reduced-motion * {
+    animation: none !important;
+    transition-duration: 0.1s !important;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .lab-sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .lab-viewport {
+        margin-left: 0;
+        height: auto;
+    }
+
+    .lab-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        flex: none;
+        width: 100%;
+    }
+}

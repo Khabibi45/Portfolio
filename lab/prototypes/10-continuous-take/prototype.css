@@ -1,0 +1,83 @@
+/**
+ * Prototype #10 - One Continuous Take
+ */
+
+.proto-continuous-take {
+    min-height: 350vh;
+    background: #0a0a0f;
+    padding: 4rem 0;
+    position: relative;
+    transition: background 0.8s ease;
+}
+
+.proto-continuous-take.scene-b {
+    background: #0d1117;
+}
+
+.take-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+}
+
+.take-rail {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(129, 140, 248, 0.2) 10%,
+            rgba(129, 140, 248, 0.2) 90%,
+            transparent);
+    transform: translateX(-50%);
+}
+
+.take-moment {
+    position: relative;
+    margin-bottom: 180px;
+    display: flex;
+    justify-content: center;
+}
+
+.moment-content {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 480px;
+    opacity: 0.25;
+    transform: translateY(30px);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.take-moment.active .moment-content {
+    opacity: 1;
+    transform: translateY(0);
+    border-color: rgba(129, 140, 248, 0.25);
+    box-shadow: 0 0 50px rgba(129, 140, 248, 0.08);
+}
+
+.moment-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: #818cf8;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.moment-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.moment-desc {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    line-height: 1.7;
+}

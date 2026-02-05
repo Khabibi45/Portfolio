@@ -91,6 +91,82 @@ body {
     color: transparent;
 }
 
+.text-silver-gradient {
+    background: linear-gradient(to right, #ffffff, #94a3b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+.heading-aura {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2)) drop-shadow(0 0 30px rgba(99, 102, 241, 0.1));
+}
+
+.section-title {
+    font-size: 3rem;
+    /* text-5xl */
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 4rem;
+    letter-spacing: -0.05em;
+}
+
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 4.5rem;
+        /* text-7xl */
+    }
+}
+
+/* Performance Optimizations */
+.optimize-gpu {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.optimize-filter {
+    will-change: filter;
+}
+
+/* Hero name - SVG flame animation */
+.hero-name-svg {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.hero-name-svg.flame-on {
+    animation: heroUndulate 5s ease-in-out infinite;
+    transform-origin: center center;
+}
+
+@keyframes heroUndulate {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    20% {
+        transform: translateY(-3px) rotate(-0.3deg);
+    }
+
+    45% {
+        transform: translateY(2px) rotate(0.2deg);
+    }
+
+    70% {
+        transform: translateY(-2px) rotate(-0.15deg);
+    }
+
+    90% {
+        transform: translateY(1px) rotate(0.1deg);
+    }
+}
+
 /* 3D Card Hover Effect */
 .project-card {
     transition: transform 0.1s;

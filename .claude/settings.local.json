@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /s /b \"C:\\\\xampp\\\\htdocs\\\\Belmehdi_Portfolio\")",
+      "Bash(wc:*)",
+      "Bash(php -l:*)",
+      "Bash(curl:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)"
+    ]
+  }
+}

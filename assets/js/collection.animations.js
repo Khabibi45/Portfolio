@@ -120,7 +120,8 @@ document.addEventListener('collection:rendered', () => {
 });
 
 /**
- * PHASE: Deck -> Scatter -> Snap (using FLIP)
+ * PHASE: Deck -> Grid (Simplified FLIP Animation)
+ * Removed scatter phase to fix timing bugs
  */
 function triggerExploration() {
     const hub = document.getElementById('collection-hub');
@@ -132,72 +133,43 @@ function triggerExploration() {
     if (hub.classList.contains('exploration-active')) return;
     hub.classList.add('exploration-active');
 
-    // 1. Capture INITIAL (Deck)
-    const initialState = Flip.getState(cards);
+    // 1. Capture INITIAL state (Deck)
+    const state = Flip.getState(cards);
 
-    const tl = gsap.timeline();
-
-    // 2. Camera Move & Info Fade Out
-    tl.to(hub, { scale: 1.01, duration: 0.6, ease: "power2.inOut" });
-    tl.to(info, {
+    // 2. Fade out info block first
+    gsap.to(info, {
         opacity: 0,
         y: 20,
         filter: "blur(10px)",
-        duration: 0.8,
-        ease: "power2.inOut"
-    }, 0);
+        duration: 0.6,
+        ease: "power2.inOut",
+        onComplete: () => {
+            // 3. Move cards to final grid in DOM
+            main.style.display = 'none';
+            finalGrid.style.marginTop = '0';
+            cards.forEach(card => {
+                gsap.set(card, { clearProps: "x,y,rotation,z" });
+                finalGrid.appendChild(card);
+            });
 
-    // 3. Cinematic Scatter (Manual GSAP)
-    tl.to(cards, {
-        duration: 0.9,
-        stagger: {
-            amount: 0.4,
-            from: "end" // Scatter from the bottom of stack
-        },
-        ease: "expo.inOut",
-        onStart: () => gsap.set(cards, { willChange: "transform, filter" }),
-        x: (i) => (Math.random() - 0.5) * window.innerWidth * 0.5,
-        y: (i) => -150 - Math.random() * 250,
-        rotation: (i) => (Math.random() - 0.5) * 40,
-        opacity: 0.7,
-        scale: 0.9,
-        filter: "blur(4px)",
-    }, "-=0.4");
-
-    // 4. Capture SCATTERED state and Execute Layout Switch
-    tl.add(() => {
-        const scatterState = Flip.getState(cards);
-
-        // 5. Layout Switch (Physical move)
-        main.style.display = 'none';
-        finalGrid.style.marginTop = '0';
-        cards.forEach(card => finalGrid.appendChild(card));
-
-        // 6. Flip Snap (Return the tween so the timeline waits for it)
-        return Flip.from(scatterState, {
-            duration: 1.2,
-            stagger: {
-                amount: 0.4,
-                from: "center"
-            },
-            ease: "power4.out",
-            onComplete: () => {
-                gsap.set(cards, { clearProps: "all" });
-                cards.forEach(c => c.classList.add('is-snapped'));
-                gsap.to(hub, { scale: 1, duration: 0.6, ease: "power2.out" });
-            },
-            spin: false,
-            fade: true,
-            absolute: true
-        });
+            // 4. Animate from old state to new grid positions
+            Flip.from(state, {
+                duration: 1.0,
+                stagger: {
+                    amount: 0.3,
+                    from: "start"
+                },
+                ease: "power3.out",
+                absolute: true,
+                onComplete: () => {
+                    // 5. Clean up and enable interactions
+                    gsap.set(cards, { clearProps: "all" });
+                    cards.forEach(c => c.classList.add('is-snapped'));
+                }
+            });
+        }
     });
-
-    // 7. Final Reveal (Only after Flip is done)
-    tl.fromTo(cards,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, stagger: 0.05, ease: "power2.out" },
-        "+=0.1"
-    );
 }
+
 
 document.addEventListener('collection:explore', triggerExploration);

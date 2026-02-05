@@ -1,0 +1,93 @@
+/**
+ * Prototype #07 - Shadow Theatre
+ */
+
+.proto-shadow-theatre {
+    min-height: 300vh;
+    background: #050508;
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.spotlight {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    transition: top 0.3s ease, left 0.3s ease;
+}
+
+.theatre-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    z-index: 1;
+}
+
+.theatre-scene {
+    margin-bottom: 180px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.scene-card {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    max-width: 450px;
+    opacity: 0.15;
+    transform: scale(0.98);
+    transition: all 0.6s ease;
+}
+
+.theatre-scene.active .scene-card {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.8);
+}
+
+.scene-shadow {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    width: 80%;
+    height: 30px;
+    background: radial-gradient(ellipse, rgba(0, 0, 0, 0.4) 0%, transparent 70%);
+    transform: translateX(-50%) scaleY(0.5);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.theatre-scene.active .scene-shadow {
+    opacity: 1;
+}
+
+.scene-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: #818cf8;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.scene-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.75rem;
+}
+
+.scene-desc {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    line-height: 1.6;
+}

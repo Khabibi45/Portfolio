@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Cloud Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Styles from index.css */
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #0f172a;
+            /* Slate 900 */
+            color: white;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .netflix-letterbox {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .netflix-letterbox .bar {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 12%;
+            /* Cinematic Aspect Ratio */
+            background: #0f172a;
+            /* Match Section Bg */
+            z-index: 21;
+        }
+
+        .netflix-letterbox .top {
+            top: 0;
+        }
+
+        .netflix-letterbox .bottom {
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 min-h-screen flex flex-col">
+
+    <!-- Skills Section Isolated -->
+    <section id="skills" class="py-20 relative bg-slate-900 overflow-hidden flex-grow">
+
+        <!-- Letterbox effect -->
+        <div class="netflix-letterbox">
+            <div class="bar top"></div>
+            <div class="bar bottom"></div>
+            <!-- Canvas for Cloud -->
+            <canvas id="skills-canvas" class="w-full h-full absolute inset-0"></canvas>
+        </div>
+
+        <!-- Typewriter Overlay (Hybrid Approach) -->
+        <div id="skill-typewriter-display"
+            class="absolute bottom-10 left-1/2 -translate-x-1/2 w-[95%] md:w-[80%] min-h-[60px] flex flex-col items-center justify-end text-center z-[50] pointer-events-none transition-opacity duration-300">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-30 pt-32">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-4 text-white">Compétences</h2>
+            <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
+                Lab Environment: Auto-Cycle Enabled (0.9s)
+            </p>
+
+            <!-- Skills Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6"
+                onmouseleave="SkillsCloudInstance.manualLeave()">
+
+                <!-- HTML5 -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300 group cursor-pointer"
+                    onmouseenter="SkillsCloudInstance.manualSelect('html')">
+                    <img src="https://cdn.simpleicons.org/html5/white" alt="HTML5" class="w-12 h-12 mb-4 opacity-90">
+                    <span class="font-bold text-gray-200">HTML5</span>
+                </div>
+
+                <!-- CSS3 -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300 group cursor-pointer"
+                    onmouseenter="SkillsCloudInstance.manualSelect('css')">
+                    <img src="https://cdn.simpleicons.org/css3/white" alt="CSS3" class="w-12 h-12 mb-4 opacity-90">
+                    <span class="font-bold text-gray-200">CSS3</span>
+                </div>
+
+                <!-- JS -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300 group cursor-pointer"
+                    onmouseenter="SkillsCloudInstance.manualSelect('js')">
+                    <img src="https://cdn.simpleicons.org/javascript/white" alt="JS" class="w-12 h-12 mb-4 opacity-90">
+                    <span class="font-bold text-gray-200">JavaScript</span>
+                </div>
+
+                <!-- PHP -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300 group cursor-pointer"
+                    onmouseenter="SkillsCloudInstance.manualSelect('php')">
+                    <img src="https://cdn.simpleicons.org/php/white" alt="PHP" class="w-12 h-12 mb-4 opacity-90">
+                    <span class="font-bold text-gray-200">PHP</span>
+                </div>
+
+                <!-- Tailwind -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300 group cursor-pointer"
+                    onmouseenter="SkillsCloudInstance.manualSelect('tailwind')">
+                    <img src="https://cdn.simpleicons.org/tailwindcss/white" alt="Tailwind"
+                        class="w-12 h-12 mb-4 opacity-90">
+                    <span class="font-bold text-gray-200">Tailwind</span>
+                </div>
+
+                <!-- Python -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300 group cursor-pointer"
+                    onmouseenter="SkillsCloudInstance.manualSelect('python')">
+                    <img src="https://cdn.simpleicons.org/python/white" alt="Python" class="w-12 h-12 mb-4 opacity-90">
+                    <span class="font-bold text-gray-200">Python</span>
+                </div>
+
+                <!-- MySQL -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300 group cursor-pointer"
+                    onmouseenter="SkillsCloudInstance.manualSelect('mysql')">
+                    <img src="https://cdn.simpleicons.org/mysql/white" alt="MySQL" class="w-12 h-12 mb-4 opacity-90">
+                    <span class="font-bold text-gray-200">MySQL</span>
+                </div>
+
+                <!-- Java -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300 group cursor-pointer"
+                    onmouseenter="SkillsCloudInstance.manualSelect('java')">
+                    <img src="https://cdn.simpleicons.org/openjdk/white" alt="Java" class="w-12 h-12 mb-4 opacity-90">
+                    <span class="font-bold text-gray-200">Java</span>
+                </div>
+
+                <!-- Linux -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300 group cursor-pointer"
+                    onmouseenter="SkillsCloudInstance.manualSelect('linux')">
+                    <img src="https://cdn.simpleicons.org/linux/white" alt="Linux" class="w-12 h-12 mb-4 opacity-90">
+                    <span class="font-bold text-gray-200">Linux</span>
+                </div>
+
+                <!-- Docker -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300 group cursor-pointer"
+                    onmouseenter="SkillsCloudInstance.manualSelect('docker')">
+                    <img src="https://cdn.simpleicons.org/docker/white" alt="Docker" class="w-12 h-12 mb-4 opacity-90">
+                    <span class="font-bold text-gray-200">Docker</span>
+                </div>
+
+                <!-- n8n -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300 group cursor-pointer"
+                    onmouseenter="SkillsCloudInstance.manualSelect('automation')">
+                    <img src="https://cdn.simpleicons.org/n8n/white" alt="n8n" class="w-12 h-12 mb-4 opacity-90">
+                    <span class="font-bold text-gray-200">n8n</span>
+                </div>
+
+                <!-- OpenAI -->
+                <div class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300 group cursor-pointer"
+                    onmouseenter="SkillsCloudInstance.manualSelect('ai')">
+                    <img src="https://cdn.simpleicons.org/openai/white" alt="OpenAI" class="w-12 h-12 mb-4 opacity-90">
+                    <span class="font-bold text-gray-200">OpenAI</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JS Logic -->
+    <script src="assets/js/skills-cloud.js"></script>
+    <script>
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            window.SkillsCloudInstance = new SkillsCloud();
+        });
+    </script>
+</body>
+
+</html>
