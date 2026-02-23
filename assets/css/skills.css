@@ -242,6 +242,15 @@ body:not(.focus-active) .skill-card:hover {
 }
 
 
+/* Mobile */
+@media (max-width: 768px) {
+    #skills-section,
+    #skills {
+        min-height: auto;
+        padding: 4rem 1rem;
+    }
+}
+
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
 

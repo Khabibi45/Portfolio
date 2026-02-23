@@ -1,0 +1,291 @@
+/* ═══════════════════════════════════════════════════════════════
+   PATTERN 3 — Horizontal Scrollytelling
+   Vertical scroll drives horizontal content movement
+   ═══════════════════════════════════════════════════════════════ */
+
+.lab-horizontal {
+  position: relative;
+}
+
+.lab-horizontal__header {
+  padding: var(--lab-space-16) 0;
+}
+
+.lab-horizontal__header-inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--lab-space-8);
+}
+
+.lab-horizontal__header-text {
+  max-width: 45ch;
+}
+
+.lab-horizontal__counter {
+  display: flex;
+  align-items: baseline;
+  gap: var(--lab-space-2);
+  font-family: var(--lab-font-mono);
+  font-size: var(--lab-text-sm);
+  color: var(--lab-text-muted);
+}
+
+.lab-horizontal__counter-current {
+  font-size: var(--lab-text-2xl);
+  font-weight: 600;
+  color: var(--lab-text-primary);
+}
+
+/* Scroll Container */
+.lab-horizontal__wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.lab-horizontal__track {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+
+/* Spacer for scroll length */
+.lab-horizontal__spacer {
+  height: 400vh; /* Controls scroll duration */
+}
+
+/* Individual Panels */
+.lab-horizontal__panel {
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--lab-space-16);
+  box-sizing: border-box;
+}
+
+.lab-horizontal__panel-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--lab-space-12);
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Panel Content */
+.lab-horizontal__panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lab-space-6);
+}
+
+.lab-horizontal__panel-num {
+  font-family: var(--lab-font-mono);
+  font-size: var(--lab-text-display);
+  font-weight: 200;
+  color: var(--lab-text-caption);
+  line-height: 0.8;
+  opacity: 0.3;
+}
+
+.lab-horizontal__panel-title {
+  font-size: var(--lab-text-3xl);
+  font-weight: 600;
+  letter-spacing: var(--lab-tracking-tight);
+  line-height: var(--lab-leading-tight);
+}
+
+.lab-horizontal__panel-desc {
+  max-width: 40ch;
+  color: var(--lab-text-secondary);
+  line-height: var(--lab-leading-relaxed);
+}
+
+.lab-horizontal__panel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lab-space-2);
+  margin-top: var(--lab-space-4);
+}
+
+.lab-horizontal__panel-tag {
+  padding: var(--lab-space-1) var(--lab-space-3);
+  font-size: var(--lab-text-xs);
+  font-weight: 500;
+  letter-spacing: var(--lab-tracking-wide);
+  color: var(--lab-text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: var(--lab-border-subtle);
+  border-radius: var(--lab-radius-full);
+}
+
+/* Panel Visual */
+.lab-horizontal__panel-visual {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--lab-bg-elevated);
+  border: var(--lab-border-subtle);
+  border-radius: var(--lab-radius-xl);
+  overflow: hidden;
+}
+
+.lab-horizontal__panel-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(125, 211, 252, 0.05) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
+.lab-horizontal__panel-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Alternate layout for even panels */
+.lab-horizontal__panel:nth-child(even) .lab-horizontal__panel-inner {
+  direction: rtl;
+}
+
+.lab-horizontal__panel:nth-child(even) .lab-horizontal__panel-inner > * {
+  direction: ltr;
+}
+
+/* Progress Bar */
+.lab-horizontal__progress {
+  position: fixed;
+  bottom: var(--lab-space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--lab-space-4);
+  padding: var(--lab-space-3) var(--lab-space-6);
+  background: rgba(10, 13, 20, 0.8);
+  backdrop-filter: blur(var(--lab-blur-md));
+  border: var(--lab-border-subtle);
+  border-radius: var(--lab-radius-full);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--lab-duration-normal) var(--lab-ease-out);
+  z-index: var(--lab-z-overlay);
+}
+
+.lab-horizontal__progress.is-visible {
+  opacity: 1;
+}
+
+.lab-horizontal__progress-bar {
+  width: 120px;
+  height: 2px;
+  background: var(--lab-bg-elevated);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.lab-horizontal__progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--lab-accent);
+  transition: width 50ms linear;
+}
+
+.lab-horizontal__progress-text {
+  font-family: var(--lab-font-mono);
+  font-size: var(--lab-text-xs);
+  color: var(--lab-text-muted);
+}
+
+/* Mobile: Native horizontal scroll with snap */
+@media (max-width: 768px) {
+  .lab-horizontal__wrapper {
+    position: relative;
+    height: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .lab-horizontal__track {
+    height: auto;
+  }
+
+  .lab-horizontal__spacer {
+    display: none;
+  }
+
+  .lab-horizontal__panel {
+    flex: 0 0 90vw;
+    width: 90vw;
+    height: auto;
+    min-height: 80vh;
+    padding: var(--lab-space-8);
+    scroll-snap-align: center;
+  }
+
+  .lab-horizontal__panel-inner {
+    grid-template-columns: 1fr;
+    gap: var(--lab-space-8);
+  }
+
+  .lab-horizontal__panel:nth-child(even) .lab-horizontal__panel-inner {
+    direction: ltr;
+  }
+
+  .lab-horizontal__panel-num {
+    font-size: var(--lab-text-4xl);
+  }
+
+  .lab-horizontal__progress {
+    display: none;
+  }
+
+  .lab-horizontal__header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Scroll hint for mobile */
+.lab-horizontal__scroll-hint {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .lab-horizontal__scroll-hint {
+    display: flex;
+    align-items: center;
+    gap: var(--lab-space-2);
+    margin-top: var(--lab-space-6);
+    font-size: var(--lab-text-sm);
+    color: var(--lab-text-muted);
+  }
+
+  .lab-horizontal__scroll-hint svg {
+    width: 20px;
+    height: 20px;
+    animation: swipeHint 1.5s ease-in-out infinite;
+  }
+
+  @keyframes swipeHint {
+    0%, 100% { transform: translateX(0); opacity: 0.5; }
+    50% { transform: translateX(8px); opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lab-horizontal__scroll-hint svg {
+      animation: none;
+    }
+  }
+}

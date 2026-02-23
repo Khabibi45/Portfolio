@@ -730,6 +730,10 @@
         text-align: center;
     }
 
+    .cinema-rows {
+        gap: 5rem;
+    }
+
     .cinema-desc {
         max-width: 100%;
         order: 2;
@@ -741,5 +745,40 @@
 
     .cinema-desc .desc-title {
         font-size: 2rem;
+    }
+
+    .cinema-row .cinema-desc {
+        align-items: center !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .cinema-rows {
+        gap: 4rem;
+    }
+
+    .cinema-rows .cinema-card {
+        width: 260px;
+        height: 380px;
+    }
+
+    .cinema-row .cinema-desc .desc-title {
+        font-size: 1.6rem !important;
+    }
+
+    .cinema-desc .desc-text {
+        font-size: 0.95rem;
+    }
+
+    .cinema-desc .desc-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .cinema-rows .cinema-card {
+        width: 220px;
+        height: 320px;
     }
 }

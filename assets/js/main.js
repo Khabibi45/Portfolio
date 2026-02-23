@@ -33,6 +33,30 @@ if (window.matchMedia("(pointer: fine)").matches) {
     });
 }
 
+// Mobile Menu Toggle
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        const icon = mobileMenuBtn.querySelector('i');
+        if (mobileMenu.classList.contains('hidden')) {
+            icon.classList.replace('fa-times', 'fa-bars');
+        } else {
+            icon.classList.replace('fa-bars', 'fa-times');
+        }
+    });
+
+    // Close menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+        });
+    });
+}
+
 // Loader
 window.addEventListener('load', () => {
     const loader = document.getElementById('loader');

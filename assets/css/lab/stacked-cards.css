@@ -1,0 +1,224 @@
+/* ═══════════════════════════════════════════════════════════════
+   PATTERN 1 — Stacked Cards (Panneaux Empilés)
+   Cards stack on top of each other via sticky positioning
+   ═══════════════════════════════════════════════════════════════ */
+
+.lab-stacked {
+  position: relative;
+  padding: var(--lab-space-section) 0;
+}
+
+.lab-stacked__header {
+  margin-bottom: var(--lab-space-16);
+}
+
+.lab-stacked__header-inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--lab-space-8);
+}
+
+.lab-stacked__count {
+  font-family: var(--lab-font-mono);
+  font-size: var(--lab-text-4xl);
+  font-weight: 300;
+  color: var(--lab-text-caption);
+  line-height: 1;
+}
+
+/* Cards Container */
+.lab-stacked__cards {
+  position: relative;
+}
+
+/* Individual Card */
+.lab-stacked__card {
+  position: sticky;
+  top: 15vh;
+  padding: var(--lab-space-10) var(--lab-space-8);
+  background: var(--lab-bg-card);
+  border: var(--lab-border-subtle);
+  border-radius: var(--lab-radius-xl);
+  transform-origin: top center;
+  transition: transform var(--lab-duration-slow) var(--lab-ease-out);
+}
+
+/* Staggered z-index and slight scale for depth */
+.lab-stacked__card:nth-child(1) {
+  z-index: 5;
+  margin-bottom: var(--lab-space-6);
+}
+
+.lab-stacked__card:nth-child(2) {
+  z-index: 4;
+  margin-bottom: var(--lab-space-6);
+  /* Subtle shape variation */
+  border-radius: var(--lab-radius-2xl) var(--lab-radius-lg) var(--lab-radius-2xl) var(--lab-radius-lg);
+}
+
+.lab-stacked__card:nth-child(3) {
+  z-index: 3;
+  margin-bottom: var(--lab-space-6);
+  border-radius: var(--lab-radius-lg) var(--lab-radius-2xl) var(--lab-radius-lg) var(--lab-radius-2xl);
+}
+
+.lab-stacked__card:nth-child(4) {
+  z-index: 2;
+  margin-bottom: var(--lab-space-6);
+  /* Organic cut corner */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+}
+
+.lab-stacked__card:nth-child(5) {
+  z-index: 1;
+}
+
+/* Card Content Layout */
+.lab-stacked__card-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--lab-space-8);
+  align-items: start;
+}
+
+.lab-stacked__card-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lab-space-4);
+}
+
+.lab-stacked__card-num {
+  font-family: var(--lab-font-mono);
+  font-size: var(--lab-text-xs);
+  color: var(--lab-text-caption);
+  letter-spacing: var(--lab-tracking-wider);
+}
+
+.lab-stacked__card-title {
+  font-size: var(--lab-text-2xl);
+  font-weight: 600;
+  letter-spacing: var(--lab-tracking-tight);
+  line-height: var(--lab-leading-tight);
+}
+
+.lab-stacked__card-desc {
+  max-width: 50ch;
+  color: var(--lab-text-secondary);
+  line-height: var(--lab-leading-relaxed);
+}
+
+/* Card List */
+.lab-stacked__card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lab-space-2) var(--lab-space-4);
+  margin-top: var(--lab-space-4);
+  list-style: none;
+  padding: 0;
+}
+
+.lab-stacked__card-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--lab-space-2);
+  font-size: var(--lab-text-sm);
+  color: var(--lab-text-muted);
+}
+
+.lab-stacked__card-list li::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--lab-accent);
+  border-radius: 50%;
+}
+
+/* Card CTA */
+.lab-stacked__card-cta {
+  align-self: flex-end;
+}
+
+.lab-stacked__card-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--lab-space-2);
+  padding: var(--lab-space-3) var(--lab-space-5);
+  font-size: var(--lab-text-sm);
+  color: var(--lab-text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  border: var(--lab-border-subtle);
+  border-radius: var(--lab-radius-full);
+  text-decoration: none;
+  transition:
+    color var(--lab-duration-fast),
+    background var(--lab-duration-fast),
+    border-color var(--lab-duration-fast);
+}
+
+.lab-stacked__card-btn:hover {
+  color: var(--lab-text-primary);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.lab-stacked__card-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--lab-duration-fast) var(--lab-ease-out);
+}
+
+.lab-stacked__card-btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* Subtle top gradient for depth illusion */
+.lab-stacked__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 30%,
+    rgba(255, 255, 255, 0.08) 70%,
+    transparent 100%
+  );
+  border-radius: inherit;
+}
+
+/* Focus styles for accessibility */
+.lab-stacked__card:focus-within {
+  outline: 2px solid var(--lab-accent);
+  outline-offset: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lab-stacked__card {
+    top: 10vh;
+    padding: var(--lab-space-6);
+  }
+
+  .lab-stacked__card-inner {
+    grid-template-columns: 1fr;
+    gap: var(--lab-space-6);
+  }
+
+  .lab-stacked__card-cta {
+    align-self: flex-start;
+  }
+
+  .lab-stacked__header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .lab-stacked__card:nth-child(n) {
+    border-radius: var(--lab-radius-lg);
+    clip-path: none;
+  }
+}

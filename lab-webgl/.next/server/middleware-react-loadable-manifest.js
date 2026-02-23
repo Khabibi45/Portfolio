@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"app\\\\page.tsx -> @/components/WebGLStage\":{\"id\":\"app\\\\page.tsx -> @/components/WebGLStage\",\"files\":[\"static/chunks/_app-pages-browser_components_WebGLStage_tsx.js\"]}}"

@@ -1,0 +1,266 @@
+/* ═══════════════════════════════════════════════════════════════
+   BASE STYLES — Lab Section Foundation
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Lab Container Reset ─── */
+#lab {
+  position: relative;
+  background: var(--lab-bg-deep);
+  color: var(--lab-text-primary);
+  font-family: var(--lab-font-body);
+  font-size: var(--lab-text-base);
+  line-height: var(--lab-leading-normal);
+  letter-spacing: var(--lab-tracking-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+/* ─── Lab Grid Container ─── */
+.lab-container {
+  width: 100%;
+  max-width: var(--lab-container-max);
+  margin: 0 auto;
+  padding-left: var(--lab-container-padding);
+  padding-right: var(--lab-container-padding);
+}
+
+.lab-container--fluid {
+  max-width: none;
+}
+
+.lab-container--narrow {
+  max-width: 900px;
+}
+
+/* ─── 12-Column Grid ─── */
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--lab-grid-cols), 1fr);
+  gap: var(--lab-grid-gap);
+}
+
+.lab-grid--dense {
+  gap: calc(var(--lab-grid-gap) * 0.5);
+}
+
+/* Grid Spans */
+.lab-col-1 { grid-column: span 1; }
+.lab-col-2 { grid-column: span 2; }
+.lab-col-3 { grid-column: span 3; }
+.lab-col-4 { grid-column: span 4; }
+.lab-col-5 { grid-column: span 5; }
+.lab-col-6 { grid-column: span 6; }
+.lab-col-7 { grid-column: span 7; }
+.lab-col-8 { grid-column: span 8; }
+.lab-col-9 { grid-column: span 9; }
+.lab-col-10 { grid-column: span 10; }
+.lab-col-11 { grid-column: span 11; }
+.lab-col-12 { grid-column: span 12; }
+
+/* Grid Start Positions */
+.lab-start-1 { grid-column-start: 1; }
+.lab-start-2 { grid-column-start: 2; }
+.lab-start-3 { grid-column-start: 3; }
+.lab-start-4 { grid-column-start: 4; }
+.lab-start-5 { grid-column-start: 5; }
+.lab-start-6 { grid-column-start: 6; }
+.lab-start-7 { grid-column-start: 7; }
+
+/* ─── Typography ─── */
+.lab-display {
+  font-size: var(--lab-text-display);
+  font-weight: 700;
+  line-height: var(--lab-leading-none);
+  letter-spacing: var(--lab-tracking-tight);
+  color: var(--lab-text-primary);
+}
+
+.lab-h1 {
+  font-size: var(--lab-text-4xl);
+  font-weight: 700;
+  line-height: var(--lab-leading-none);
+  letter-spacing: var(--lab-tracking-tight);
+}
+
+.lab-h2 {
+  font-size: var(--lab-text-3xl);
+  font-weight: 600;
+  line-height: var(--lab-leading-tight);
+  letter-spacing: var(--lab-tracking-tight);
+}
+
+.lab-h3 {
+  font-size: var(--lab-text-2xl);
+  font-weight: 600;
+  line-height: var(--lab-leading-tight);
+}
+
+.lab-h4 {
+  font-size: var(--lab-text-xl);
+  font-weight: 500;
+  line-height: var(--lab-leading-tight);
+}
+
+.lab-body {
+  font-size: var(--lab-text-base);
+  line-height: var(--lab-leading-relaxed);
+  color: var(--lab-text-secondary);
+}
+
+.lab-caption {
+  font-size: var(--lab-text-sm);
+  line-height: var(--lab-leading-normal);
+  color: var(--lab-text-muted);
+}
+
+.lab-overline {
+  font-size: var(--lab-text-xs);
+  font-weight: 500;
+  letter-spacing: var(--lab-tracking-wider);
+  text-transform: uppercase;
+  color: var(--lab-accent);
+}
+
+.lab-mono {
+  font-family: var(--lab-font-mono);
+  font-size: var(--lab-text-sm);
+}
+
+/* ─── Links & Buttons ─── */
+.lab-link {
+  color: var(--lab-text-primary);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--lab-duration-normal) var(--lab-ease-out);
+}
+
+.lab-link:hover,
+.lab-link:focus-visible {
+  background-size: 100% 1px;
+}
+
+.lab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--lab-space-2);
+  padding: var(--lab-space-3) var(--lab-space-6);
+  font-size: var(--lab-text-sm);
+  font-weight: 500;
+  letter-spacing: var(--lab-tracking-wide);
+  text-transform: uppercase;
+  color: var(--lab-text-primary);
+  background: transparent;
+  border: var(--lab-border-light);
+  border-radius: var(--lab-radius-full);
+  cursor: pointer;
+  transition:
+    background var(--lab-duration-fast) var(--lab-ease-out),
+    border-color var(--lab-duration-fast) var(--lab-ease-out),
+    transform var(--lab-duration-fast) var(--lab-ease-out);
+}
+
+.lab-btn:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.lab-btn:focus-visible {
+  outline: 2px solid var(--lab-accent);
+  outline-offset: 2px;
+}
+
+.lab-btn--primary {
+  background: var(--lab-text-primary);
+  color: var(--lab-bg-deep);
+  border-color: var(--lab-text-primary);
+}
+
+.lab-btn--primary:hover {
+  background: rgba(244, 244, 246, 0.9);
+}
+
+/* ─── Focus Styles ─── */
+.lab-focus-ring:focus-visible {
+  outline: 2px solid var(--lab-accent);
+  outline-offset: 3px;
+}
+
+/* ─── Utility Classes ─── */
+.lab-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.lab-text-accent { color: var(--lab-accent); }
+.lab-text-muted { color: var(--lab-text-muted); }
+.lab-text-secondary { color: var(--lab-text-secondary); }
+
+/* Section Spacing */
+.lab-section {
+  padding-top: var(--lab-space-section);
+  padding-bottom: var(--lab-space-section);
+}
+
+.lab-section + .lab-section {
+  padding-top: 0;
+}
+
+/* ─── Dividers ─── */
+.lab-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 20%,
+    rgba(255, 255, 255, 0.08) 80%,
+    transparent 100%
+  );
+}
+
+.lab-divider--vertical {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 20%,
+    rgba(255, 255, 255, 0.08) 80%,
+    transparent 100%
+  );
+}
+
+/* ─── Responsive Breakpoints ─── */
+@media (max-width: 1024px) {
+  .lab-col-6 { grid-column: span 12; }
+  .lab-col-4 { grid-column: span 6; }
+  .lab-col-3 { grid-column: span 6; }
+}
+
+@media (max-width: 768px) {
+  .lab-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-col-1, .lab-col-2, .lab-col-3, .lab-col-4,
+  .lab-col-5, .lab-col-6, .lab-col-7, .lab-col-8,
+  .lab-col-9, .lab-col-10, .lab-col-11, .lab-col-12 {
+    grid-column: span 1;
+  }
+
+  .lab-start-1, .lab-start-2, .lab-start-3, .lab-start-4,
+  .lab-start-5, .lab-start-6, .lab-start-7 {
+    grid-column-start: 1;
+  }
+}

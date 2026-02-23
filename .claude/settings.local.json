@@ -6,7 +6,15 @@
       "Bash(php -l:*)",
       "Bash(curl:*)",
       "Bash(netstat:*)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(powershell -Command \"$content = Get-Content ''index.php'' -Raw; $pattern = ''\\(?s\\)    <!-- LAB_SECTION_REMOVED -->.*?    <!-- END LAB SECTION -->\\\\r?\\\\n''; $content = $content -replace $pattern, ''''; Set-Content -Path ''index.php'' -Value $content -NoNewline\")",
+      "Bash(php -r \"$f=''index.php''; $c=file_get_contents\\($f\\); $c=preg_replace\\(''/\\\\s*<!-- LAB_SECTION_REMOVED -->.*?<!-- END LAB SECTION -->\\\\s*/s'', \"\"\\\\n\\\\n\"\", $c\\); file_put_contents\\($f, $c\\);\")",
+      "Bash(php remove_lab.php:*)",
+      "Bash(del:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Bash(docker exec:*)",
+      "Bash(ls -la \"C:\\\\xampp\\\\htdocs\\\\Belmehdi_Portfolio\\\\assets\\\\images\\\\projets\"\" && ls -la \"C:xampphtdocsBelmehdi_PortfolioassetsimagesPresentation\"\")"
     ]
   }
 }

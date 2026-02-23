@@ -1,0 +1,309 @@
+/* ═══════════════════════════════════════════════════════════════
+   PATTERN 4 — Masked Windows (Fenêtres / Masques)
+   Content revealed through organic SVG shapes
+   ═══════════════════════════════════════════════════════════════ */
+
+.lab-windows {
+  position: relative;
+  padding: var(--lab-space-section) 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Background Layer */
+.lab-windows__bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--lab-bg-deep) 0%,
+    #0d1117 50%,
+    var(--lab-bg-deep) 100%
+  );
+}
+
+.lab-windows__bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 100% 80% at 20% 80%, rgba(125, 211, 252, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 80% 20%, rgba(168, 85, 247, 0.04) 0%, transparent 50%);
+}
+
+/* Grid Layout */
+.lab-windows__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto;
+  gap: var(--lab-space-8);
+  align-items: center;
+}
+
+/* Text Content */
+.lab-windows__content {
+  grid-column: 1 / 6;
+  grid-row: 1 / 3;
+}
+
+.lab-windows__title {
+  font-size: var(--lab-text-4xl);
+  font-weight: 700;
+  letter-spacing: var(--lab-tracking-tight);
+  line-height: var(--lab-leading-none);
+  margin-bottom: var(--lab-space-8);
+}
+
+.lab-windows__desc {
+  max-width: 40ch;
+  color: var(--lab-text-secondary);
+  line-height: var(--lab-leading-relaxed);
+  margin-bottom: var(--lab-space-8);
+}
+
+.lab-windows__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lab-space-4);
+  list-style: none;
+  padding: 0;
+}
+
+.lab-windows__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--lab-space-4);
+  font-size: var(--lab-text-base);
+  color: var(--lab-text-muted);
+}
+
+.lab-windows__feature-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: var(--lab-border-subtle);
+  border-radius: var(--lab-radius-md);
+}
+
+.lab-windows__feature-icon svg {
+  width: 16px;
+  height: 16px;
+  color: var(--lab-accent);
+}
+
+/* Window Frames */
+.lab-windows__frames {
+  grid-column: 6 / 13;
+  grid-row: 1 / 3;
+  position: relative;
+  height: 70vh;
+  min-height: 500px;
+}
+
+/* Main Organic Window (Blob) */
+.lab-windows__main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  aspect-ratio: 1;
+}
+
+.lab-windows__main-mask {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* SVG Blob Mask Definition */
+.lab-windows__svg-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.lab-windows__main-inner {
+  width: 100%;
+  height: 100%;
+  background: var(--lab-bg-elevated);
+  clip-path: url(#lab-blob-mask);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.lab-windows__main-inner img {
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+}
+
+/* Secondary Windows - Capsule shapes */
+.lab-windows__secondary {
+  position: absolute;
+}
+
+.lab-windows__window {
+  overflow: hidden;
+  background: var(--lab-bg-card);
+  border: var(--lab-border-subtle);
+}
+
+.lab-windows__window img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Capsule 1 - Top right */
+.lab-windows__window--1 {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 25%;
+  aspect-ratio: 2 / 3;
+  border-radius: 100px;
+}
+
+/* Capsule 2 - Bottom left */
+.lab-windows__window--2 {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  width: 20%;
+  aspect-ratio: 1.5 / 1;
+  border-radius: var(--lab-radius-2xl);
+}
+
+/* Circle 3 - Small accent */
+.lab-windows__window--3 {
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 12%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+/* Window Labels */
+.lab-windows__window-label {
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--lab-text-xs);
+  color: var(--lab-text-caption);
+  white-space: nowrap;
+  letter-spacing: var(--lab-tracking-wide);
+}
+
+/* Decorative Elements */
+.lab-windows__deco {
+  position: absolute;
+  pointer-events: none;
+}
+
+.lab-windows__deco--line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--lab-accent), transparent);
+}
+
+.lab-windows__deco--line-1 {
+  top: 20%;
+  right: 0;
+}
+
+.lab-windows__deco--line-2 {
+  bottom: 30%;
+  left: -30px;
+  transform: rotate(-45deg);
+}
+
+.lab-windows__deco--dot {
+  width: 6px;
+  height: 6px;
+  background: var(--lab-accent);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.lab-windows__deco--dot-1 {
+  top: 10%;
+  left: 40%;
+}
+
+.lab-windows__deco--dot-2 {
+  bottom: 15%;
+  right: 20%;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .lab-windows__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .lab-windows__content {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: center;
+    margin-bottom: var(--lab-space-12);
+  }
+
+  .lab-windows__desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .lab-windows__features {
+    align-items: center;
+  }
+
+  .lab-windows__frames {
+    grid-column: 1;
+    grid-row: 2;
+    height: 50vh;
+    min-height: 350px;
+  }
+
+  .lab-windows__main {
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .lab-windows__title {
+    font-size: var(--lab-text-3xl);
+  }
+
+  .lab-windows__frames {
+    height: 40vh;
+  }
+
+  .lab-windows__window--1,
+  .lab-windows__window--3 {
+    display: none;
+  }
+
+  .lab-windows__window--2 {
+    bottom: 5%;
+    left: 5%;
+    width: 30%;
+  }
+
+  .lab-windows__deco {
+    display: none;
+  }
+}

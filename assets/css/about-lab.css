@@ -490,3 +490,81 @@
     opacity: 0.8;
     text-shadow: 0 0 10px rgba(129, 140, 248, 0.4);
 }
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+    .scanner-card {
+        padding: 3rem;
+        min-height: 500px;
+    }
+
+    .about-carousel-container {
+        height: 450px;
+    }
+
+    .about-carousel-item {
+        width: 280px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .scanner-card {
+        padding: 2rem 1.5rem;
+        border-radius: 20px;
+        min-height: auto;
+    }
+
+    .scanner-line,
+    .scanner-line-primary,
+    .scanner-line-secondary {
+        display: none;
+    }
+
+    .step-nav-arrow {
+        padding: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .about-carousel-container {
+        height: 400px;
+        margin-top: 2rem;
+    }
+
+    .about-carousel-item {
+        width: 240px;
+        height: 340px;
+    }
+
+    .carousel-caption {
+        font-size: 0.6rem;
+    }
+
+    .step-indicator {
+        width: 20px;
+    }
+
+    .step-indicator.active {
+        width: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .scanner-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .about-step h2.section-title {
+        font-size: 1.8rem !important;
+    }
+
+    .about-carousel-track {
+        gap: 1.5rem;
+        padding: 1rem 2rem;
+    }
+
+    .about-carousel-item {
+        width: 200px;
+        height: 280px;
+    }
+}

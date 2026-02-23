@@ -145,7 +145,10 @@
                             class="hover:text-primary transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium">Compétences</a>
                         <a href="#projects"
                             class="hover:text-primary transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium">Projets</a>
-
+                        <a href="https://github.com/Khabibi45" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-white transition-colors duration-300 text-xl">
+                            <i class="fab fa-github"></i>
+                        </a>
                         <a href="#contact"
                             class="px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 text-sm font-bold shadow-lg shadow-indigo-500/30">Me
                             Contacter</a>
@@ -172,9 +175,14 @@
                     class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-gray-800">Compétences</a>
                 <a href="#projects"
                     class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary hover:bg-gray-800">Projets</a>
-
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-primary font-bold">Me
-                    Contacter</a>
+                <div class="flex items-center justify-between px-3 py-2">
+                    <a href="https://github.com/Khabibi45" target="_blank" rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-white transition-colors duration-300 text-2xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#contact" class="text-base font-medium text-primary font-bold">Me
+                        Contacter</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -270,16 +278,20 @@
                             if (!svg || !strokeEl || !flameEl || !clipRect) return;
 
                             document.fonts.ready.then(function () {
-                                var fontSize = window.innerWidth >= 768 ? 72 : 48;
-                                strokeEl.setAttribute('font-size', fontSize);
-                                flameEl.setAttribute('font-size', fontSize);
+                                function updateSVG() {
+                                    var fontSize = window.innerWidth >= 768 ? 72 : 44;
+                                    strokeEl.setAttribute('font-size', fontSize);
+                                    flameEl.setAttribute('font-size', fontSize);
 
-                                var bbox = strokeEl.getBBox();
-                                svg.setAttribute('viewBox',
-                                    (bbox.x - 4) + ' ' + (bbox.y - 10) + ' ' + (bbox.width + 8) + ' ' + (bbox.height + 16));
+                                    var bbox = strokeEl.getBBox();
+                                    svg.setAttribute('viewBox',
+                                        (bbox.x - 4) + ' ' + (bbox.y - 10) + ' ' + (bbox.width + 8) + ' ' + (bbox.height + 16));
+                                    clipRect.setAttribute('x', bbox.x - 20);
+                                    return bbox;
+                                }
 
-                                // Positionner le clip rect sur la zone du texte
-                                clipRect.setAttribute('x', bbox.x - 20);
+                                var bbox = updateSVG();
+                                window.addEventListener('resize', updateSVG);
 
                                 var dashLen = 5000;
                                 strokeEl.style.strokeDasharray = dashLen;
@@ -338,7 +350,7 @@
                         <span>Voir mes travaux</span>
                         <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                     </a>
-                    <a href="CV_Belmehdi_Camil_WEB_FullStack.pdf" target="_blank"
+                    <a href="assets/cv/CV_Belmehdi_Camil_WEB_FullStack.pdf" target="_blank"
                         class="px-6 py-3 font-medium text-gray-300 hover:text-white transition-colors border border-white/5 hover:bg-white/5 rounded-full">
                         <i class="fas fa-download mr-2"></i>Télécharger CV
                     </a>
@@ -400,14 +412,6 @@
 
                         <!-- Step Stage: Container for sliding/fading steps -->
                         <div class="step-stage">
-                            <!-- Step 1: Signature Numérique -->
-                            <div class="about-step active" data-step="1">
-                                <h2 class="section-title heading-aura bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 scanner-reveal"
-                                    style="opacity:1; transform: translateY(0);">CAMIL BELMEHDI</h2>
-                                <p class="text-indigo-400 font-bold mb-12 scanner-reveal tracking-widest text-center"
-                                    style="opacity:1; transform: translateY(0);">DÉVELOPPEUR & AUTOMATISATION</p>
-                            </div>
-
                             <!-- Step 2: Données Bio -->
                             <div class="about-step" data-step="2" style="display:none; opacity:0;">
                                 <div class="space-y-8 text-gray-300 max-w-2xl mx-auto mb-12">
@@ -755,7 +759,7 @@
                 <div class="netflix-poster-wrapper" data-index="0">
                     <div class="netflix-poster">
                         <div class="poster-image"
-                            style="background-image: url('assets/images/projets/site builder.png');">
+                            style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=800');">
                         </div>
                         <div class="poster-overlay"></div>
                         <div class="poster-rating">9.2</div>
@@ -927,7 +931,7 @@
                 <div class="cinema-row">
                     <div class="cinema-card">
                         <div class="card-bg"
-                            style="background-image: url('assets/images/projets/site builder.png');">
+                            style="background-image: url('https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=800');">
                         </div>
                         <div class="card-vignette"></div>
                         <div class="card-content">
@@ -1281,7 +1285,7 @@
 
                     <!-- Contact Direct -->
                     <div
-                        class="absolute -bottom-20 left-1/2 -translate-x-1/2 text-center text-xs text-gray-500 whitespace-nowrap">
+                        class="relative mt-8 text-center text-xs text-gray-500">
                         <p class="font-semibold text-indigo-400 mb-2">Contact Direct</p>
                         <p class="hover:text-white cursor-pointer transition-colors"
                             onclick="copyContactText('camil.belmehdi@etu.iut-tlse3.fr')">
@@ -1364,12 +1368,28 @@
                 btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
                 btn.disabled = true;
 
-                setTimeout(() => {
-                    form.querySelectorAll('input, textarea, button').forEach(el => el.style.display = 'none');
-                    document.getElementById('contact-form-success').classList.remove('hidden');
-                    document.getElementById('contact-progress-ring').style.strokeDashoffset = 0;
-                    document.getElementById('contact-progress-percent').textContent = '100%';
-                }, 1500);
+                fetch('contact.php', {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        form.querySelectorAll('input, textarea, button').forEach(el => el.style.display = 'none');
+                        document.getElementById('contact-form-success').classList.remove('hidden');
+                        document.getElementById('contact-progress-ring').style.strokeDashoffset = 0;
+                        document.getElementById('contact-progress-percent').textContent = '100%';
+                    } else {
+                        btn.innerHTML = '<span>Envoyer</span><i class="fas fa-paper-plane"></i>';
+                        btn.disabled = false;
+                        alert(data.message || 'Erreur lors de l\'envoi.');
+                    }
+                })
+                .catch(() => {
+                    btn.innerHTML = '<span>Envoyer</span><i class="fas fa-paper-plane"></i>';
+                    btn.disabled = false;
+                    alert('Erreur réseau, veuillez réessayer.');
+                });
             });
         </script>
 
@@ -1390,8 +1410,21 @@
         </style>
     </section>
 
-    <footer class="py-6 text-center text-gray-500 text-sm border-t border-white/5 bg-slate-900">
-        <p>&copy; 2026 Camil Belmehdi. Fait avec <i class="fas fa-heart text-red-500 mx-1"></i> et beaucoup de café.</p>
+<footer class="py-10 text-center border-t border-white/5 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center gap-6">
+                <div class="flex items-center gap-6">
+                    <a href="https://github.com/Khabibi45" target="_blank" rel="noopener noreferrer"
+                        class="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:border-white/20 hover:bg-white/10 transition-all duration-300 text-2xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    <p>&copy; 2026 Camil Belmehdi. Fait avec <i class="fas fa-heart text-red-500 mx-1"></i> et beaucoup
+                        de café.</p>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- Scripts -->

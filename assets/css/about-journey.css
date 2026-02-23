@@ -266,8 +266,66 @@
         margin-top: 1.5rem;
     }
 
+    .pod-info.milestone-photo-large {
+        width: calc(100% - 4rem);
+    }
+
+    .pod-info.milestone-photo-large img {
+        height: 250px;
+    }
+
     .rail-glow {
         display: none;
+    }
+}
+
+/* ========================================
+   8b. VERY SMALL SCREENS
+   ======================================== */
+
+@media (max-width: 480px) {
+    .about-journey-container {
+        padding: 2rem 0.5rem 4rem 0.5rem;
+    }
+
+    .journey-data-line {
+        left: 1rem;
+    }
+
+    .pod-node {
+        left: 1rem;
+        width: 12px;
+        height: 12px;
+    }
+
+    .pod-card,
+    .pod-info {
+        width: calc(100% - 2.5rem);
+        margin-left: 2.5rem;
+    }
+
+    .pod-card {
+        padding: 1.5rem;
+    }
+
+    .pod-title {
+        font-size: 1.2rem;
+    }
+
+    .pod-desc {
+        font-size: 0.8rem;
+    }
+
+    .pod-info.milestone-photo-large {
+        width: calc(100% - 2.5rem);
+    }
+
+    .pod-info.milestone-photo-large img {
+        height: 200px;
+    }
+
+    .journey-pod {
+        margin-bottom: 80px;
     }
 }
 
